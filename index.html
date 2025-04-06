@@ -9,979 +9,1003 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@400;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
- <link rel="stylesheet" href="styles.css">
-    <style >
+    <style>
         /* ============================================= */
-/* ============ GLOBAL STYLES ================= */
-/* ============================================= */
-
-/**
- * CSS Variables (Custom Properties)
- * These variables define the design system for the entire application
- * including colors, spacing, border-radius, and shadows.
- */
- :root {
-    /* Color Palette */
-    --dark-teal: #264653;       /* Primary dark color for headers/nav */
-    --bright-blue: #2A9DF4;     /* Primary accent color for buttons/links */
-    --light-yellow: #E9C46A;    /* Secondary accent color */
-    --orange: #F4A261;          /* Tertiary accent color */
-    --white: #ffffff;           /* Pure white for text/backgrounds */
-    --off-white: #f8f9fa;       /* Off-white for page background */
-    --dark-gray: #333333;       /* Dark gray for text */
-    
-    /* Spacing System (8px baseline) */
-    --space-xs: 0.5rem;         /* 4px - for tight spacing */
-    --space-sm: 1rem;           /* 8px - default spacing */
-    --space-md: 1.5rem;         /* 12px - medium spacing */
-    --space-lg: 2rem;           /* 16px - large spacing */
-    --space-xl: 3rem;           /* 24px - extra large spacing */
-    
-    /* Border Radius */
-    --radius-sm: 4px;           /* Small rounded corners */
-    --radius-md: 8px;           /* Medium rounded corners */
-    --radius-lg: 12px;          /* Large rounded corners */
-    
-    /* Box Shadows */
-    --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);     /* Subtle shadow */
-    --shadow-md: 0 4px 8px rgba(0,0,0,0.15);    /* Medium shadow */
-    --shadow-lg: 0 8px 16px rgba(0,0,0,0.2);    /* Strong shadow */
-}
-
-/**
- * Base Reset
- * Resets default browser styles and sets up box-sizing
- */
-* {
-    box-sizing: border-box;     /* Include padding/border in element sizing */
-    margin: 0;                  /* Remove default margins */
-    padding: 0;                 /* Remove default padding */
-}
-
-/**
- * HTML Root Element
- * Sets up smooth scrolling behavior for anchor links
- */
-html {
-    scroll-behavior: smooth;    /* Enable smooth scrolling */
-}
-
-  /* Add these styles to enhance typography */
-  .profile-name {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 1.8rem;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    color: #fff;
-    margin-bottom: 0.5rem;
-}
-
-.profile-title {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    font-size: 1.1rem;
-    letter-spacing: 1px;
-    color: var(--light-yellow);
-    text-transform: uppercase;
-}
-
-/* Education section enhancements */
-.education-page h2 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 2rem;
-    position: relative;
-    display: inline-block;
-}
-
-.education-page h2::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: var(--light-yellow);
-}
-
-table {
-    font-family: 'Poppins', sans-serif;
-}
-
-th {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    font-size: 0.9rem;
-}
-
-td {
-    font-weight: 400;
-}
-
-/* Skill cards title enhancement */
-.skill-card h3 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    margin-top: 1rem;
-}
-
-
-
-/**
- * Body Styles
- * Sets up the base typography and layout for the page
- */
-body {
-    font-family: 'Poppins', sans-serif;  /* Primary font family */
-    line-height: 1.6;                    /* Comfortable line spacing */
-    color: var(--dark-teal);             /* Default text color */
-    background-color: var(--off-white);  /* Page background */
-    overflow-x: hidden;                  /* Prevent horizontal scroll */
-    padding-left: 300px;                 /* Space for fixed side navigation */
-}
-
-/* ============================================= */
-/* ============ SIDE NAVIGATION =============== */
-/* ============================================= */
-
-/**
- * Side Navigation Container
- * Fixed position sidebar that contains profile info and navigation
- */
-.side-nav {
-    position: fixed;            /* Fixed to viewport */
-    top: 0;
-    left: 0;
-    width: 300px;               /* Fixed width */
-    height: 100vh;              /* Full viewport height */
-    background-color: var(--dark-teal);  /* Dark background */
-    color: var(--white);        /* Light text color */
-    padding: var(--space-xl);   /* Large padding */
-    overflow-y: auto;           /* Enable vertical scrolling if needed */
-    z-index: 1000;              /* Ensure nav stays above other content */
-    box-shadow: var(--shadow-lg); /* Depth effect */
-    
-    /* Animation for mobile toggle */
-    transition: transform 0.3s ease;
-}
-
-/**
- * Profile Section
- * Contains the user's profile image, name, and title
- */
-.profile-section {
-    text-align: center;         /* Center align content */
-    margin-bottom: var(--space-xl); /* Spacing below section */
-}
-
-.profile-image {
-    width: 150px;               /* Fixed size */
-    height: 150px;
-    border-radius: 50%;         /* Circular image */
-    object-fit: cover;          /* Ensure image fills space */
-    border: 5px solid var(--light-yellow); /* Accent border */
-    margin: 0 auto var(--space-md); /* Centered with bottom margin */
-    transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-.profile-image:hover {
-    transform: scale(1.05);     /* Slight scale on hover */
-    border-color: var(--orange); /* Change border color */
-}
-
-.profile-name {
-    font-family: 'Playfair Display', serif; /* Elegant font for name */
-    font-size: 1.5rem;          /* Large text size */
-    margin-bottom: var(--space-xs); /* Small spacing below */
-    font-weight: 700;           /* Bold weight */
-}
-
-.profile-title {
-    color: var(--light-yellow); /* Accent color */
-    margin-bottom: var(--space-md); /* Medium spacing below */
-    font-weight: 600;           /* Semi-bold */
-    font-size: 1.1rem;          /* Slightly larger than body text */
-}
-
-/**
- * Navigation Menu
- * List of navigation links with icons
- */
-.nav-menu {
-    list-style: none;           /* Remove default list styling */
-    margin: var(--space-xl) 0;  /* Vertical spacing */
-}
-
-.nav-menu li {
-    margin-bottom: var(--space-sm); /* Space between items */
-}
-
-.nav-menu a {
-    display: block;             /* Make entire area clickable */
-    padding: var(--space-sm);   /* Comfortable padding */
-    color: var(--white);       /* Light text */
-    border-radius: var(--radius-sm); /* Rounded corners */
-    transition: all 0.3s ease;  /* Smooth hover effects */
-    font-weight: 500;           /* Medium weight */
-}
-
-/* Hover and active states for nav items */
-.nav-menu a:hover,
-.nav-menu a:focus {
-    background-color: rgba(255,255,255,0.1); /* Light overlay */
-    transform: translateX(5px); /* Slight right movement */
-    outline: none;              /* Remove focus outline */
-}
-
-.nav-menu i {
-    margin-right: var(--space-sm); /* Space between icon and text */
-    width: 20px;                /* Fixed icon width */
-    text-align: center;         /* Center icons */
-    font-size: 1.1rem;         /* Slightly larger icons */
-}
-
-/**
- * Contact Information in Sidebar
- * Contains contact details and social links
- */
-.contact-info-side {
-    margin-top: var(--space-xl); /* Spacing above section */
-    padding-top: var(--space-md); /* Top padding */
-    border-top: 1px solid rgba(255,255,255,0.1); /* Subtle divider */
-}
-
-.contact-info-side h4 {
-    font-family: 'Playfair Display', serif; /* Elegant font */
-    margin-bottom: var(--space-md); /* Spacing below heading */
-    font-size: 1.2rem;          /* Slightly larger text */
-    color: var(--light-yellow); /* Accent color */
-}
-
-.contact-item {
-    display: flex;              /* Flex layout for icon + text */
-    align-items: center;        /* Vertical alignment */
-    margin-bottom: var(--space-sm); /* Space between items */
-    font-size: 0.9rem;         /* Slightly smaller text */
-}
-
-.contact-item i {
-    margin-right: var(--space-sm); /* Space between icon and text */
-    color: var(--light-yellow); /* Accent color for icons */
-    width: 20px;                /* Fixed width */
-    font-size: 1rem;           /* Icon size */
-}
-
-/**
- * Social Links
- * Styling for social media icons
- */
-.social-links {
-    display: flex;              /* Horizontal layout */
-    gap: var(--space-sm);       /* Space between icons */
-    margin-top: var(--space-md); /* Spacing above section */
-    justify-content: center;    /* Center icons */
-}
-
-.social-links a {
-    color: var(--white);        /* Light icons */
-    font-size: 1.2rem;         /* Icon size */
-    transition: all 0.3s ease;  /* Smooth transitions */
-    display: inline-flex;       /* Flex layout */
-    width: 36px;               /* Fixed size */
-    height: 36px;              /* Fixed size */
-    border-radius: 50%;        /* Circular shape */
-    background: rgba(255,255,255,0.1); /* Subtle background */
-    align-items: center;       /* Center vertically */
-    justify-content: center;   /* Center horizontally */
-}
-
-/* Hover effects for social links */
-.social-links a:hover {
-    transform: translateY(-3px); /* Lift effect */
-    background: rgba(255,255,255,0.2); /* Brighter background */
-    box-shadow: var(--shadow-sm); /* Subtle shadow */
-}
-
-/* ============================================= */
-/* ============ MAIN CONTENT ================== */
-/* ============================================= */
-
-.main-content {
-    position: relative;         /* Positioning context */
-    min-height: 100vh;         /* At least full viewport height */
-}
-
-/**
- * Typography
- * Heading and text styles
- */
-h1, h2, h3 {
-    font-family: 'Playfair Display', serif; /* Elegant font for headings */
-    font-weight: 700;           /* Bold weight */
-    line-height: 1.2;           /* Tighter line spacing */
-    margin-bottom: var(--space-md); /* Consistent bottom margin */
-    color: var(--dark-teal);    /* Dark teal color */
-}
-
-/* Responsive typography using clamp() */
-h1 {
-    font-size: clamp(2.5rem, 5vw, 3.5rem); /* Scales between 2.5rem and 3.5rem */
-}
-
-h2 {
-    font-size: clamp(2rem, 4vw, 2.5rem); /* Scales between 2rem and 2.5rem */
-}
-
-h3 {
-    font-size: clamp(1.5rem, 3vw, 1.8rem); /* Scales between 1.5rem and 1.8rem */
-}
-
-/* Base text styles */
-p, li, td {
-    font-size: clamp(1rem, 2vw, 1.1rem); /* Responsive font sizing */
-    margin-bottom: var(--space-sm); /* Consistent bottom margin */
-    color: var(--dark-gray);    /* Dark gray for readability */
-}
-
-a {
-    text-decoration: none;      /* Remove underlines */
-    color: inherit;             /* Inherit text color */
-    transition: color 0.3s ease; /* Smooth color transitions */
-}
-
-/* ============================================= */
-/* ============ COVER/HERO SECTION ============ */
-/* ============================================= */
-
-/**
- * Cover Page (Hero Section)
- * Full-screen introductory section with gradient background
- */
-.cover-page {
-    background: linear-gradient(135deg, var(--dark-teal), var(--bright-blue));
-    color: var(--white);        /* Light text */
-    min-height: 100vh;         /* Full viewport height */
-    display: flex;              /* Flex layout */
-    flex-direction: column;     /* Vertical stacking */
-    justify-content: center;    /* Vertical centering */
-    align-items: center;        /* Horizontal centering */
-    text-align: center;        /* Center text */
-    padding: var(--space-xl);  /* Large padding */
-    position: relative;        /* Positioning context */
-}
-
-.cover-content {
-    max-width: 800px;          /* Limit content width */
-    margin: 0 auto;            /* Center horizontally */
-    animation: fadeInUp 0.8s ease; /* Entrance animation */
-}
-
-.subtitle {
-    font-weight: 600;           /* Semi-bold */
-    font-size: clamp(1.2rem, 2.5vw, 1.5rem); /* Responsive sizing */
-    text-transform: uppercase;  /* Uppercase text */
-    letter-spacing: 1px;       /* Slightly spaced letters */
-    margin: var(--space-md) 0; /* Vertical spacing */
-    color: var(--light-yellow); /* Accent color */
-}
-
-.tagline {
-    font-style: italic;         /* Italicized */
-    font-size: clamp(1.2rem, 2.5vw, 1.5rem); /* Responsive sizing */
-    max-width: 600px;          /* Limit width */
-    margin: var(--space-lg) auto; /* Vertical spacing and centering */
-    line-height: 1.4;          /* Comfortable line spacing */
-}
-
-cite {
-    display: block;             /* Block display */
-    font-size: clamp(0.9rem, 1.8vw, 1rem); /* Responsive sizing */
-    margin-top: var(--space-xs); /* Small top margin */
-    opacity: 0.9;              /* Slightly transparent */
-    font-family: 'Poppins', sans-serif; /* Body font */
-    font-style: normal;        /* Normal (not italic) */
-}
-
-/* ============================================= */
-/* ============ BUTTON STYLES ================ */
-/* ============================================= */
-
-/**
- * Button Base Styles
- * Shared styles for all button variants
- */
-.button {
-    display: inline-block;      /* Inline-block display */
-    padding: var(--space-sm) var(--space-md); /* Comfortable padding */
-    border-radius: var(--radius-md); /* Rounded corners */
-    transition: all 0.3s ease;  /* Smooth transitions */
-    cursor: pointer;            /* Pointer cursor */
-    font-weight: 600;           /* Semi-bold */
-    text-align: center;         /* Center text */
-    border: 2px solid transparent; /* Transparent border */
-    font-size: 1rem;           /* Base font size */
-}
-
-/**
- * Primary Button
- * Solid colored button for primary actions
- */
-.button.primary {
-    background-color: var(--bright-blue); /* Blue background */
-    color: var(--white);       /* White text */
-    box-shadow: var(--shadow-sm); /* Subtle shadow */
-}
-
-/* Hover/focus states */
-.button.primary:hover,
-.button.primary:focus {
-    background-color: var(--dark-teal); /* Darker background */
-    transform: translateY(-2px); /* Lift effect */
-    box-shadow: var(--shadow-md); /* Stronger shadow */
-    outline: none;              /* Remove focus outline */
-}
-
-/**
- * Secondary Button
- * Outlined button for secondary actions
- */
-.button.secondary {
-    background-color: transparent; /* Transparent background */
-    border-color: var(--bright-blue); /* Blue border */
-    color: var(--bright-blue); /* Blue text */
-}
-
-/* Hover/focus states */
-.button.secondary:hover,
-.button.secondary:focus {
-    background-color: var(--bright-blue); /* Blue background */
-    color: var(--white);       /* White text */
-    outline: none;              /* Remove focus outline */
-}
-
-/**
- * Button Group
- * Container for multiple buttons
- */
-.button-group {
-    display: flex;              /* Flex layout */
-    gap: var(--space-sm);       /* Space between buttons */
-    justify-content: center;    /* Center buttons */
-    flex-wrap: wrap;            /* Wrap on small screens */
-    margin-top: var(--space-md); /* Spacing above */
-}
-
-/* ============================================= */
-/* ============ SECTION STYLES =============== */
-/* ============================================= */
-
-/**
- * Section Container
- * Wrapper for content sections
- */
-.section-container {
-    max-width: 1200px;         /* Maximum width */
-    margin: 0 auto;            /* Center horizontally */
-    width: 90%;                /* 90% width on larger screens */
-    padding: var(--space-xl) 0; /* Vertical padding */
-}
-
-/**
- * Title Page Section
- * Section with yellow background
- */
-.title-page {
-    background-color: var(--light-yellow); /* Yellow background */
-    text-align: center;        /* Center content */
-}
-
-/**
- * Education Page Section
- * Section with white background
- */
-.education-page {
-    background-color: var(--white); /* White background */
-}
-
-/* ============================================= */
-/* ============ TABLE STYLES ================= */
-/* ============================================= */
-
-/**
- * Table Container
- * Wrapper for responsive tables
- */
-.table-container {
-    overflow-x: auto;          /* Horizontal scrolling for small screens */
-    margin: var(--space-lg) 0; /* Vertical spacing */
-    box-shadow: var(--shadow-md); /* Medium shadow */
-    border-radius: var(--radius-md); /* Rounded corners */
-}
-
-/**
- * Table Styles
- * Styling for data tables
- */
-table {
-    width: 100%;               /* Full width */
-    border-collapse: collapse; /* Remove cell spacing */
-    min-width: 600px;         /* Minimum width before scrolling */
-}
-
-th, td {
-    padding: var(--space-sm);  /* Cell padding */
-    text-align: left;          /* Left-aligned text */
-    border: 1px solid rgba(38, 70, 83, 0.1); /* Light borders */
-}
-
-th {
-    background-color: var(--light-yellow); /* Yellow header */
-    color: var(--dark-teal);   /* Dark text */
-    font-weight: 700;          /* Bold text */
-    position: sticky;          /* Sticky headers */
-    top: 0;                    /* Stick to top */
-}
-
-/* Zebra striping for rows */
-tr:nth-child(even) {
-    background-color: rgba(244, 162, 97, 0.1); /* Light orange */
-}
-
-/* Row hover effect */
-tr:hover {
-    background-color: rgba(217, 217, 217, 0.3); /* Light gray */
-}
-
-/* ============================================= */
-/* ============ SKILLS SECTION =============== */
-/* ============================================= */
-
-/**
- * Skills Page Section
- * Section with orange background
- */
-.skills-page {
-    background-color: var(--orange); /* Orange background */
-}
-
-/**
- * Skills Grid
- * Responsive grid layout for skill cards
- */
-.skills-grid {
-    display: grid;              /* Grid layout */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
-    gap: var(--space-lg);       /* Space between cards */
-    margin: var(--space-xl) 0;  /* Vertical spacing */
-}
-
-/**
- * Skill Card
- * Individual card for each skill category
- */
-/* ============================================= */
-/* ============ SKILL BACKGROUNDS ============= */
-/* ============================================= */
-
-.skill-card {
-    position: relative;
-    overflow: hidden;
-    background-color: rgba(255,255,255,0.2);
-    border-radius: var(--radius-lg);
-    padding: var(--space-lg);
-    box-shadow: var(--shadow-sm);
-    transition: all 0.3s ease;
-}
-
-.skill-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    background-size: cover;
-    background-position: center;
-    opacity: 0.2;
-    transition: opacity 1s ease-in-out;
-    /* Add these for smoother transitions */
-    will-change: opacity;
-    backface-visibility: hidden;
-    transform: translateZ(0);
-}
-
-/* Add a second background layer for crossfade effect */
-.skill-background.secondary {
-    opacity: 0;
-}
-
-.skill-content {
-    position: relative;
-    z-index: 1;
-    padding: 25px;
-    border-radius: 10px;
-    height: 100%;
-   /* background-color: rgba(255, 255, 255, 0.85);*/
-}
-/**
- * Skill Header
- * Contains skill icon and title
- */
-.skill-header {
-    display: flex;              /* Flex layout */
-    flex-direction: column;     /* Vertical stacking */
-    align-items: center;        /* Center horizontally */
-    margin-bottom: var(--space-md); /* Spacing below */
-    position: relative;         /* Positioning context */
-    z-index: 2;                /* Above other elements */
-}
-
-.skill-image {
-    width: 80px;               /* Fixed size */
-    height: 80px;
-    object-fit: contain;        /* Maintain aspect ratio */
-    margin-bottom: var(--space-sm); /* Spacing below */
-    transition: transform 0.3s ease; /* Smooth transform */
-}
-
-/* Hover effect for skill images */
-.skill-card:hover .skill-image {
-    transform: scale(1.1);      /* Slight scale up */
-}
-
-/**
- * Skill Details
- * List of specific skills or attributes
- */
-.skill-details {
-    text-align: left;           /* Left-aligned text */
-    padding-left: var(--space-md); /* Left padding */
-}
-
-.skill-details li {
-    position: relative;         /* Positioning context */
-    margin-bottom: var(--space-xs); /* Small spacing */
-    padding-left: var(--space-sm); /* Left padding */
-    list-style-type: none;      /* Remove bullets */
-}
-
-/* Custom bullet points */
-.skill-details li::before {
-    content: "•";               /* Bullet character */
-    position: absolute;         /* Absolute positioning */
-    left: 0;                    /* Align left */
-    color: var(--dark-teal);    /* Dark teal color */
-    font-weight: bold;          /* Bold bullet */
-}
-
-/* ============================================= */
-/* ============ CONTACT SECTION =============== */
-/* ============================================= */
-
-/**
- * Contact Section
- * Section with light yellow background
- */
-.contact-section {
-    background-color: var(--light-yellow); /* Yellow background */
-    padding: var(--space-xl) 0; /* Vertical padding */
-    text-align: center;        /* Center content */
-}
-
-/**
- * Social Icons
- * Container for social media icons
- */
-.social-icons {
-    display: flex;              /* Flex layout */
-    justify-content: center;    /* Center horizontally */
-    gap: var(--space-md);       /* Space between icons */
-    margin: var(--space-lg) 0;  /* Vertical spacing */
-    flex-wrap: wrap;            /* Wrap on small screens */
-}
-
-/**
- * Social Icon
- * Individual social media icon
- */
-.social-icon {
-    width: 70px;               /* Fixed size */
-    height: 70px;
-    border-radius: 50%;        /* Circular shape */
-    background-color: var(--orange); /* Orange background */
-    display: flex;              /* Flex layout */
-    align-items: center;        /* Center vertically */
-    justify-content: center;    /* Center horizontally */
-    cursor: pointer;            /* Pointer cursor */
-    transition: all 0.3s ease;  /* Smooth transitions */
-    box-shadow: var(--shadow-sm); /* Subtle shadow */
-    position: relative;        /* Positioning context */
-    overflow: hidden;          /* Hide overflow */
-}
-
-/* Overlay effect for social icons */
-.social-icon::after {
-    content: '';               /* Empty content */
-    position: absolute;        /* Absolute positioning */
-    width: 100%;               /* Full width */
-    height: 100%;              /* Full height */
-    background: rgba(0,0,0,0.1); /* Semi-transparent overlay */
-    opacity: 0;                /* Initially hidden */
-    transition: opacity 0.3s;  /* Smooth transition */
-}
-
-/* Hover effects for social icons */
-.social-icon:hover {
-    transform: translateY(-5px); /* Lift effect */
-    box-shadow: var(--shadow-md); /* Stronger shadow */
-}
-
-.social-icon:hover::after {
-    opacity: 1;                /* Show overlay */
-}
-
-.social-icon i {
-    font-size: 1.75rem;        /* Icon size */
-    color: var(--white);       /* White icon */
-    transition: transform 0.3s; /* Smooth transform */
-    z-index: 1;                /* Above overlay */
-}
-
-/* Hover effect for icons */
-.social-icon:hover i {
-    transform: scale(1.1);     /* Slight scale up */
-}
-
-/**
- * Contact Details Container
- * Wrapper for contact information
- */
-.contact-details-container {
-    max-width: 800px;          /* Maximum width */
-    margin: 0 auto;            /* Center horizontally */
-    min-height: 300px;         /* Minimum height */
-    position: relative;        /* Positioning context */
-}
-
-/**
- * Contact Details
- * Panel showing contact information
- */
-.contact-details {
-    background-color: var(--white); /* White background */
-    padding: var(--space-lg);   /* Large padding */
-    border-radius: var(--radius-lg); /* Large rounded corners */
-    box-shadow: var(--shadow-lg); /* Strong shadow */
-    display: none;              /* Initially hidden */
-    animation: fadeIn 0.5s ease; /* Entrance animation */
-    position: absolute;        /* Absolute positioning */
-    width: 100%;               /* Full width */
-    top: 0;                    /* Align top */
-    left: 0;                   /* Align left */
-}
-
-/* Active state for contact details */
-.contact-details.active {
-    display: block;            /* Show when active */
-}
-
-.contact-info {
-    margin-top: var(--space-md); /* Spacing above */
-    text-align: center;        /* Center content */
-}
-
-.contact-info p {
-    margin: var(--space-sm) 0; /* Vertical spacing */
-}
-
-.contact-info a {
-    color: var(--bright-blue); /* Blue link color */
-    transition: color 0.3s;    /* Smooth color transition */
-    font-weight: 600;          /* Semi-bold */
-}
-
-/* Hover effect for contact links */
-.contact-info a:hover {
-    color: var(--dark-teal);   /* Dark teal on hover */
-    text-decoration: underline; /* Underline on hover */
-}
-
-/* ============================================= */
-/* ============ FOOTER ======================= */
-/* ============================================= */
-
-/**
- * Footer Styles
- * Site footer with dark background
- */
-.footer {
-    background-color: var(--dark-teal); /* Dark teal background */
-    color: var(--white);       /* White text */
-    padding: var(--space-lg);  /* Large padding */
-    text-align: center;        /* Center content */
-}
-
-.footer-content {
-    max-width: 1200px;         /* Maximum width */
-    margin: 0 auto;            /* Center horizontally */
-}
-
-/* ============================================= */
-/* ============ ANIMATIONS =================== */
-/* ============================================= */
-
-/**
- * Fade In Animation
- * Used for showing hidden elements
- */
-@keyframes fadeIn {
-    from { 
-        opacity: 0;            /* Start invisible */
-        transform: translateY(20px); /* Start slightly below */
-    }
-    to { 
-        opacity: 1;            /* Fade in */
-        transform: translateY(0); /* Move to normal position */
-    }
-}
-
-/**
- * Fade In Up Animation
- * Used for hero section entrance
- */
-@keyframes fadeInUp {
-    from { 
-        opacity: 0;            /* Start invisible */
-        transform: translateY(40px); /* Start further below */
-    }
-    to { 
-        opacity: 1;            /* Fade in */
-        transform: translateY(0); /* Move to normal position */
-    }
-}
-
-/* ============================================= */
-/* ============ RESPONSIVE ADJUSTMENTS ======== */
-/* ============================================= */
-
-/**
- * Medium Screens (Tablets)
- * Adjustments for screens up to 992px
- */
-@media (max-width: 992px) {
-    body {
-        padding-left: 0;       /* Remove side nav space */
-    }
-    
-    /* Side navigation for mobile */
-    .side-nav {
-        transform: translateX(-100%); /* Hide off-screen */
-        width: 280px;          /* Slightly narrower */
-    }
-    
-    /* Show side nav when active */
-    .side-nav.active {
-        transform: translateX(0); /* Slide in */
-    }
-    
-    /* Mobile menu toggle button */
-    .menu-toggle {
-        display: block;        /* Show toggle button */
-        position: fixed;       /* Fixed position */
-        top: 20px;             /* From top */
-        left: 20px;            /* From left */
-        z-index: 1100;         /* Above other content */
-        background: var(--dark-teal); /* Dark teal background */
-        color: white;          /* White icon */
-        border: none;          /* No border */
-        width: 50px;           /* Fixed size */
-        height: 50px;          /* Fixed size */
-        border-radius: 50%;    /* Circular shape */
-        font-size: 1.5rem;     /* Icon size */
-        cursor: pointer;       /* Pointer cursor */
-        box-shadow: var(--shadow-md); /* Medium shadow */
-        transition: all 0.3s ease; /* Smooth transitions */
-    }
-    
-    /* Hover effect for menu toggle */
-    .menu-toggle:hover {
-        transform: scale(1.1); /* Slight scale up */
-    }
-}
-
-/**
- * Small Screens (Large Phones)
- * Adjustments for screens up to 768px
- */
-@media (max-width: 768px) {
-    /* Single column layout for skills */
-    .skills-grid {
-        grid-template-columns: 1fr; /* Single column */
-    }
-    
-    /* Stack buttons vertically */
-    .button-group {
-        flex-direction: column; /* Vertical layout */
-        align-items: center;    /* Center buttons */
-    }
-    
-    /* Full width buttons */
-    .button {
-        width: 100%;           /* Full width */
-        max-width: 300px;      /* But not too wide */
-    }
-
-    /* Smaller social icons */
-    .social-icon {
-        width: 60px;           /* Smaller size */
-        height: 60px;          /* Smaller size */
-    }
-}
-
-/**
- * Extra Small Screens (Phones)
- * Adjustments for screens up to 480px
- */
-@media (max-width: 480px) {
-    /* Reduce section padding */
-    .section-container {
-        padding: var(--space-lg) 0; /* Smaller padding */
-    }
-
-    /* Smaller skill images */
-    .skill-image {
-        width: 60px;           /* Smaller size */
-        height: 60px;          /* Smaller size */
-    }
-    
-    /* Full width tables */
-    table {
-        min-width: 100%;       /* No minimum width */
-    }
-    
-    /* Smaller cell padding */
-    th, td {
-        padding: var(--space-xs); /* Extra small padding */
-    }
-}
-
-
-
-
-
+        /* ============ GLOBAL STYLES ================= */
+        /* ============================================= */
+
+        /**
+         * CSS Variables (Custom Properties)
+         * These variables define the design system for the entire application
+         * including colors, spacing, border-radius, and shadows.
+         */
+        :root {
+            /* Color Palette */
+            --dark-teal: #264653;       /* Primary dark color for headers/nav */
+            --bright-blue: #2A9DF4;     /* Primary accent color for buttons/links */
+            --light-yellow: #E9C46A;    /* Secondary accent color */
+            --orange: #F4A261;          /* Tertiary accent color */
+            --white: #ffffff;           /* Pure white for text/backgrounds */
+            --off-white: #f8f9fa;       /* Off-white for page background */
+            --dark-gray: #333333;       /* Dark gray for text */
+            --light-gray: #e9ecef;      /* Light gray for backgrounds */
+            
+            /* Spacing System (8px baseline) */
+            --space-xs: 0.5rem;         /* 4px - for tight spacing */
+            --space-sm: 1rem;           /* 8px - default spacing */
+            --space-md: 1.5rem;         /* 12px - medium spacing */
+            --space-lg: 2rem;           /* 16px - large spacing */
+            --space-xl: 3rem;           /* 24px - extra large spacing */
+            --space-xxl: 4rem;          /* 32px - extra extra large spacing */
+            
+            /* Border Radius */
+            --radius-sm: 4px;           /* Small rounded corners */
+            --radius-md: 8px;           /* Medium rounded corners */
+            --radius-lg: 12px;          /* Large rounded corners */
+            --radius-xl: 16px;          /* Extra large rounded corners */
+            
+            /* Box Shadows */
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);     /* Subtle shadow */
+            --shadow-md: 0 4px 8px rgba(0,0,0,0.15);    /* Medium shadow */
+            --shadow-lg: 0 8px 16px rgba(0,0,0,0.2);    /* Strong shadow */
+            --shadow-xl: 0 12px 24px rgba(0,0,0,0.25);  /* Extra strong shadow */
+            
+            /* Transitions */
+            --transition-fast: 0.2s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+        }
+
+        /**
+         * Base Reset
+         * Resets default browser styles and sets up box-sizing
+         */
+        * {
+            box-sizing: border-box;     /* Include padding/border in element sizing */
+            margin: 0;                  /* Remove default margins */
+            padding: 0;                 /* Remove default padding */
+        }
+
+        /**
+         * HTML Root Element
+         * Sets up smooth scrolling behavior for anchor links
+         */
+        html {
+            scroll-behavior: smooth;    /* Enable smooth scrolling */
+            scroll-padding-top: var(--space-lg); /* Account for fixed header */
+        }
+
+        /* ============================================= */
+        /* ============ TYPOGRAPHY ==================== */
+        /* ============================================= */
+
+        body {
+            font-family: 'Poppins', sans-serif;  /* Primary font family */
+            line-height: 1.6;                    /* Comfortable line spacing */
+            color: var(--dark-gray);             /* Default text color */
+            background-color: var(--off-white);  /* Page background */
+            overflow-x: hidden;                  /* Prevent horizontal scroll */
+            padding-left: 300px;                 /* Space for fixed side navigation */
+        }
+
+        /* Responsive typography using clamp() */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif; /* Elegant font for headings */
+            font-weight: 700;           /* Bold weight */
+            line-height: 1.2;           /* Tighter line spacing */
+            margin-bottom: var(--space-md); /* Consistent bottom margin */
+            color: var(--dark-teal);    /* Dark teal color */
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem); /* Scales between 2.5rem and 3.5rem */
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem); /* Scales between 2rem and 2.5rem */
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--light-yellow);
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 1.8rem); /* Scales between 1.5rem and 1.8rem */
+        }
+
+        /* Base text styles */
+        p, li, td, span {
+            font-size: clamp(1rem, 2vw, 1.1rem); /* Responsive font sizing */
+            margin-bottom: var(--space-sm); /* Consistent bottom margin */
+            color: var(--dark-gray);    /* Dark gray for readability */
+        }
+
+        a {
+            text-decoration: none;      /* Remove underlines */
+            color: inherit;             /* Inherit text color */
+            transition: color var(--transition-fast); /* Smooth color transitions */
+        }
+
+        /* Profile name and title enhancements */
+        .profile-name {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            color: var(--light-yellow);
+            text-transform: uppercase;
+        }
+
+        /* ============================================= */
+        /* ============ SIDE NAVIGATION =============== */
+        /* ============================================= */
+
+        /**
+         * Side Navigation Container
+         * Fixed position sidebar that contains profile info and navigation
+         */
+        .side-nav {
+            position: fixed;            /* Fixed to viewport */
+            top: 0;
+            left: 0;
+            width: 300px;               /* Fixed width */
+            height: 100vh;              /* Full viewport height */
+            background-color: var(--dark-teal);  /* Dark background */
+            color: var(--white);        /* Light text color */
+            padding: var(--space-xl);   /* Large padding */
+            overflow-y: auto;           /* Enable vertical scrolling if needed */
+            z-index: 1000;              /* Ensure nav stays above other content */
+            box-shadow: var(--shadow-lg); /* Depth effect */
+            
+            /* Animation for mobile toggle */
+            transition: transform var(--transition-normal);
+        }
+
+        /**
+         * Profile Section
+         * Contains the user's profile image, name, and title
+         */
+        .profile-section {
+            text-align: center;         /* Center align content */
+            margin-bottom: var(--space-xl); /* Spacing below section */
+        }
+
+        .profile-image {
+            width: 150px;               /* Fixed size */
+            height: 150px;
+            border-radius: 50%;         /* Circular image */
+            object-fit: cover;          /* Ensure image fills space */
+            border: 5px solid var(--light-yellow); /* Accent border */
+            margin: 0 auto var(--space-md); /* Centered with bottom margin */
+            transition: transform var(--transition-normal), 
+                        border-color var(--transition-normal);
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);     /* Slight scale on hover */
+            border-color: var(--orange); /* Change border color */
+        }
+
+        /**
+         * Navigation Menu
+         * List of navigation links with icons
+         */
+        .nav-menu {
+            list-style: none;           /* Remove default list styling */
+            margin: var(--space-xl) 0;  /* Vertical spacing */
+        }
+
+        .nav-menu li {
+            margin-bottom: var(--space-sm); /* Space between items */
+        }
+
+        .nav-menu a {
+            display: flex;             /* Flex layout for icon + text */
+            align-items: center;        /* Center vertically */
+            padding: var(--space-sm);   /* Comfortable padding */
+            color: var(--white);       /* Light text */
+            border-radius: var(--radius-sm); /* Rounded corners */
+            transition: all var(--transition-normal);  /* Smooth hover effects */
+            font-weight: 500;           /* Medium weight */
+        }
+
+        /* Hover and active states for nav items */
+        .nav-menu a:hover,
+        .nav-menu a:focus,
+        .nav-menu a.active {
+            background-color: rgba(255,255,255,0.1); /* Light overlay */
+            transform: translateX(5px); /* Slight right movement */
+            outline: none;              /* Remove focus outline */
+        }
+
+        .nav-menu i {
+            margin-right: var(--space-sm); /* Space between icon and text */
+            width: 24px;                /* Fixed icon width */
+            text-align: center;         /* Center icons */
+            font-size: 1.1rem;         /* Slightly larger icons */
+        }
+
+        /**
+         * Contact Information in Sidebar
+         * Contains contact details and social links
+         */
+        .contact-info-side {
+            margin-top: var(--space-xl); /* Spacing above section */
+            padding-top: var(--space-md); /* Top padding */
+            border-top: 1px solid rgba(255,255,255,0.1); /* Subtle divider */
+        }
+
+        .contact-info-side h4 {
+            font-family: 'Playfair Display', serif; /* Elegant font */
+            margin-bottom: var(--space-md); /* Spacing below heading */
+            font-size: 1.2rem;          /* Slightly larger text */
+            color: var(--light-yellow); /* Accent color */
+        }
+
+        .contact-item {
+            display: flex;              /* Flex layout for icon + text */
+            align-items: center;        /* Vertical alignment */
+            margin-bottom: var(--space-sm); /* Space between items */
+            font-size: 0.9rem;         /* Slightly smaller text */
+        }
+
+        .contact-item i {
+            margin-right: var(--space-sm); /* Space between icon and text */
+            color: var(--light-yellow); /* Accent color for icons */
+            width: 20px;                /* Fixed width */
+            font-size: 1rem;           /* Icon size */
+        }
+
+        /**
+         * Social Links
+         * Styling for social media icons
+         */
+        .social-links {
+            display: flex;              /* Horizontal layout */
+            gap: var(--space-sm);       /* Space between icons */
+            margin-top: var(--space-md); /* Spacing above section */
+            justify-content: center;    /* Center icons */
+        }
+
+        .social-links a {
+            color: var(--white);        /* Light icons */
+            font-size: 1.2rem;         /* Icon size */
+            transition: all var(--transition-normal);  /* Smooth transitions */
+            display: inline-flex;       /* Flex layout */
+            width: 36px;               /* Fixed size */
+            height: 36px;              /* Fixed size */
+            border-radius: 50%;        /* Circular shape */
+            background: rgba(255,255,255,0.1); /* Subtle background */
+            align-items: center;       /* Center vertically */
+            justify-content: center;   /* Center horizontally */
+        }
+
+        /* Hover effects for social links */
+        .social-links a:hover {
+            transform: translateY(-3px); /* Lift effect */
+            background: rgba(255,255,255,0.2); /* Brighter background */
+            box-shadow: var(--shadow-sm); /* Subtle shadow */
+        }
+
+        /* ============================================= */
+        /* ============ MAIN CONTENT ================== */
+        /* ============================================= */
+
+        .main-content {
+            position: relative;         /* Positioning context */
+            min-height: 100vh;         /* At least full viewport height */
+        }
+
+        /* ============================================= */
+        /* ============ COVER/HERO SECTION ============ */
+        /* ============================================= */
+
+        /**
+         * Cover Page (Hero Section)
+         * Full-screen introductory section with gradient background
+         */
+        .cover-page {
+            background: linear-gradient(135deg, var(--dark-teal), var(--bright-blue));
+            color: var(--white);        /* Light text */
+            min-height: 100vh;         /* Full viewport height */
+            display: flex;              /* Flex layout */
+            flex-direction: column;     /* Vertical stacking */
+            justify-content: center;    /* Vertical centering */
+            align-items: center;        /* Horizontal centering */
+            text-align: center;        /* Center text */
+            padding: var(--space-xl);  /* Large padding */
+            position: relative;        /* Positioning context */
+        }
+
+        .cover-content {
+            max-width: 800px;          /* Limit content width */
+            margin: 0 auto;            /* Center horizontally */
+            animation: fadeInUp 0.8s ease; /* Entrance animation */
+        }
+
+        .subtitle {
+            font-weight: 600;           /* Semi-bold */
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem); /* Responsive sizing */
+            text-transform: uppercase;  /* Uppercase text */
+            letter-spacing: 1px;       /* Slightly spaced letters */
+            margin: var(--space-md) 0; /* Vertical spacing */
+            color: var(--light-yellow); /* Accent color */
+        }
+
+        .tagline {
+            font-style: italic;         /* Italicized */
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem); /* Responsive sizing */
+            max-width: 600px;          /* Limit width */
+            margin: var(--space-lg) auto; /* Vertical spacing and centering */
+            line-height: 1.4;          /* Comfortable line spacing */
+        }
+
+        cite {
+            display: block;             /* Block display */
+            font-size: clamp(0.9rem, 1.8vw, 1rem); /* Responsive sizing */
+            margin-top: var(--space-xs); /* Small top margin */
+            opacity: 0.9;              /* Slightly transparent */
+            font-family: 'Poppins', sans-serif; /* Body font */
+            font-style: normal;        /* Normal (not italic) */
+        }
+
+        /* ============================================= */
+        /* ============ BUTTON STYLES ================ */
+        /* ============================================= */
+
+        /**
+         * Button Base Styles
+         * Shared styles for all button variants
+         */
+        .button {
+            display: inline-flex;      /* Inline-flex for better alignment */
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-sm) var(--space-md); /* Comfortable padding */
+            border-radius: var(--radius-md); /* Rounded corners */
+            transition: all var(--transition-normal);  /* Smooth transitions */
+            cursor: pointer;            /* Pointer cursor */
+            font-weight: 600;           /* Semi-bold */
+            text-align: center;         /* Center text */
+            border: 2px solid transparent; /* Transparent border */
+            font-size: 1rem;           /* Base font size */
+            gap: var(--space-xs);      /* Space between icon and text */
+        }
+
+        /**
+         * Primary Button
+         * Solid colored button for primary actions
+         */
+        .button.primary {
+            background-color: var(--bright-blue); /* Blue background */
+            color: var(--white);       /* White text */
+            box-shadow: var(--shadow-sm); /* Subtle shadow */
+        }
+
+        /* Hover/focus states */
+        .button.primary:hover,
+        .button.primary:focus {
+            background-color: var(--dark-teal); /* Darker background */
+            transform: translateY(-2px); /* Lift effect */
+            box-shadow: var(--shadow-md); /* Stronger shadow */
+            outline: none;              /* Remove focus outline */
+        }
+
+        /**
+         * Secondary Button
+         * Outlined button for secondary actions
+         */
+        .button.secondary {
+            background-color: transparent; /* Transparent background */
+            border-color: var(--bright-blue); /* Blue border */
+            color: var(--bright-blue); /* Blue text */
+        }
+
+        /* Hover/focus states */
+        .button.secondary:hover,
+        .button.secondary:focus {
+            background-color: var(--bright-blue); /* Blue background */
+            color: var(--white);       /* White text */
+            outline: none;              /* Remove focus outline */
+        }
+
+        /**
+         * Button Group
+         * Container for multiple buttons
+         */
+        .button-group {
+            display: flex;              /* Flex layout */
+            gap: var(--space-sm);       /* Space between buttons */
+            justify-content: center;    /* Center buttons */
+            flex-wrap: wrap;            /* Wrap on small screens */
+            margin-top: var(--space-md); /* Spacing above */
+        }
+
+        /* ============================================= */
+        /* ============ SECTION STYLES =============== */
+        /* ============================================= */
+
+        /**
+         * Section Container
+         * Wrapper for content sections
+         */
+        .section-container {
+            max-width: 1200px;         /* Maximum width */
+            margin: 0 auto;            /* Center horizontally */
+            width: 90%;                /* 90% width on larger screens */
+            padding: var(--space-xl) 0; /* Vertical padding */
+        }
+
+        /**
+         * Title Page Section
+         * Section with yellow background
+         */
+        .title-page {
+            background-color: var(--light-yellow); /* Yellow background */
+            text-align: center;        /* Center content */
+            padding: var(--space-xxl) 0; /* Extra padding */
+        }
+
+        .intro-text {
+            max-width: 800px;
+            margin: 0 auto var(--space-lg);
+            font-size: clamp(1.1rem, 2vw, 1.2rem);
+            line-height: 1.7;
+        }
+
+        /**
+         * Education Page Section
+         * Section with white background
+         */
+        .education-page {
+            background-color: var(--white); /* White background */
+            padding: var(--space-xxl) 0; /* Extra padding */
+        }
+
+        /* ============================================= */
+        /* ============ TABLE STYLES ================= */
+        /* ============================================= */
+
+        /**
+         * Table Container
+         * Wrapper for responsive tables
+         */
+        .table-container {
+            overflow-x: auto;          /* Horizontal scrolling for small screens */
+            margin: var(--space-lg) 0; /* Vertical spacing */
+            box-shadow: var(--shadow-md); /* Medium shadow */
+            border-radius: var(--radius-md); /* Rounded corners */
+            background-color: var(--white);
+        }
+
+        /**
+         * Table Styles
+         * Styling for data tables
+         */
+        table {
+            width: 100%;               /* Full width */
+            border-collapse: collapse; /* Remove cell spacing */
+            min-width: 600px;         /* Minimum width before scrolling */
+        }
+
+        th, td {
+            padding: var(--space-sm);  /* Cell padding */
+            text-align: left;          /* Left-aligned text */
+            border: 1px solid rgba(38, 70, 83, 0.1); /* Light borders */
+        }
+
+        th {
+            background-color: var(--light-yellow); /* Yellow header */
+            color: var(--dark-teal);   /* Dark text */
+            font-weight: 700;          /* Bold text */
+            position: sticky;          /* Sticky headers */
+            top: 0;                    /* Stick to top */
+        }
+
+        /* Zebra striping for rows */
+        tr:nth-child(even) {
+            background-color: rgba(244, 162, 97, 0.1); /* Light orange */
+        }
+
+        /* Row hover effect */
+        tr:hover {
+            background-color: rgba(217, 217, 217, 0.3); /* Light gray */
+        }
+
+        /* ============================================= */
+        /* ============ SKILLS SECTION =============== */
+        /* ============================================= */
+
+        /**
+         * Skills Page Section
+         * Section with orange background
+         */
+        .skills-page {
+            background-color: var(--orange); /* Orange background */
+            padding: var(--space-xxl) 0; /* Extra padding */
+        }
+
+        /**
+         * Skills Grid
+         * Responsive grid layout for skill cards
+         */
+        .skills-grid {
+            display: grid;              /* Grid layout */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
+            gap: var(--space-lg);       /* Space between cards */
+            margin: var(--space-xl) 0;  /* Vertical spacing */
+        }
+
+        /**
+         * Skill Card
+         * Individual card for each skill category
+         */
+        .skill-card {
+            position: relative;
+            overflow: hidden;
+            background-color: rgba(255,255,255,0.2);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-normal);
+            height: 100%; /* Ensure equal height */
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            background-color: rgba(255,255,255,0.3);
+        }
+
+        .skill-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+            transition: opacity 1s ease-in-out;
+            /* Add these for smoother transitions */
+            will-change: opacity;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+
+        /* Add a second background layer for crossfade effect */
+        .skill-background.secondary {
+            opacity: 0;
+        }
+
+        .skill-content {
+            position: relative;
+            z-index: 1;
+            padding: 25px;
+            border-radius: 10px;
+            height: 100%;
+        }
+
+        /**
+         * Skill Header
+         * Contains skill icon and title
+         */
+        .skill-header {
+            display: flex;              /* Flex layout */
+            flex-direction: column;     /* Vertical stacking */
+            align-items: center;        /* Center horizontally */
+            margin-bottom: var(--space-md); /* Spacing below */
+            position: relative;         /* Positioning context */
+            z-index: 2;                /* Above other elements */
+        }
+
+        .skill-image {
+            width: 80px;               /* Fixed size */
+            height: 80px;
+            object-fit: contain;        /* Maintain aspect ratio */
+            margin-bottom: var(--space-sm); /* Spacing below */
+            transition: transform var(--transition-normal); /* Smooth transform */
+        }
+
+        /* Hover effect for skill images */
+        .skill-card:hover .skill-image {
+            transform: scale(1.1);      /* Slight scale up */
+        }
+
+        /**
+         * Skill Details
+         * List of specific skills or attributes
+         */
+        .skill-details {
+            text-align: left;           /* Left-aligned text */
+            padding-left: var(--space-md); /* Left padding */
+        }
+
+        .skill-details li {
+            position: relative;         /* Positioning context */
+            margin-bottom: var(--space-xs); /* Small spacing */
+            padding-left: var(--space-sm); /* Left padding */
+            list-style-type: none;      /* Remove bullets */
+        }
+
+        /* Custom bullet points */
+        .skill-details li::before {
+            content: "•";               /* Bullet character */
+            position: absolute;         /* Absolute positioning */
+            left: 0;                    /* Align left */
+            color: var(--dark-teal);    /* Dark teal color */
+            font-weight: bold;          /* Bold bullet */
+        }
+
+        /* Navigation buttons in skills section */
+        .navigation-buttons {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+            flex-wrap: wrap;
+        }
+
+        /* ============================================= */
+        /* ============ CONTACT SECTION =============== */
+        /* ============================================= */
+
+        /**
+         * Contact Section
+         * Section with light yellow background
+         */
+        .contact-section {
+            background-color: var(--light-yellow); /* Yellow background */
+            padding: var(--space-xxl) 0; /* Extra padding */
+            text-align: center;        /* Center content */
+        }
+
+        /**
+         * Social Icons
+         * Container for social media icons
+         */
+        .social-icons {
+            display: flex;              /* Flex layout */
+            justify-content: center;    /* Center horizontally */
+            gap: var(--space-md);       /* Space between icons */
+            margin: var(--space-lg) 0;  /* Vertical spacing */
+            flex-wrap: wrap;            /* Wrap on small screens */
+        }
+
+        /**
+         * Social Icon
+         * Individual social media icon
+         */
+        .social-icon {
+            width: 70px;               /* Fixed size */
+            height: 70px;
+            border-radius: 50%;        /* Circular shape */
+            background-color: var(--orange); /* Orange background */
+            display: flex;              /* Flex layout */
+            align-items: center;        /* Center vertically */
+            justify-content: center;    /* Center horizontally */
+            cursor: pointer;            /* Pointer cursor */
+            transition: all var(--transition-normal);  /* Smooth transitions */
+            box-shadow: var(--shadow-sm); /* Subtle shadow */
+            position: relative;        /* Positioning context */
+            overflow: hidden;          /* Hide overflow */
+        }
+
+        /* Overlay effect for social icons */
+        .social-icon::after {
+            content: '';               /* Empty content */
+            position: absolute;        /* Absolute positioning */
+            width: 100%;               /* Full width */
+            height: 100%;              /* Full height */
+            background: rgba(0,0,0,0.1); /* Semi-transparent overlay */
+            opacity: 0;                /* Initially hidden */
+            transition: opacity var(--transition-normal);  /* Smooth transition */
+        }
+
+        /* Hover effects for social icons */
+        .social-icon:hover {
+            transform: translateY(-5px); /* Lift effect */
+            box-shadow: var(--shadow-md); /* Stronger shadow */
+        }
+
+        .social-icon:hover::after {
+            opacity: 1;                /* Show overlay */
+        }
+
+        .social-icon i {
+            font-size: 1.75rem;        /* Icon size */
+            color: var(--white);       /* White icon */
+            transition: transform var(--transition-normal); /* Smooth transform */
+            z-index: 1;                /* Above overlay */
+        }
+
+        /* Hover effect for icons */
+        .social-icon:hover i {
+            transform: scale(1.1);     /* Slight scale up */
+        }
+
+        /**
+         * Contact Details Container
+         * Wrapper for contact information
+         */
+        .contact-details-container {
+            max-width: 800px;          /* Maximum width */
+            margin: 0 auto;            /* Center horizontally */
+            min-height: 300px;         /* Minimum height */
+            position: relative;        /* Positioning context */
+        }
+
+        /**
+         * Contact Details
+         * Panel showing contact information
+         */
+        .contact-details {
+            background-color: var(--white); /* White background */
+            padding: var(--space-lg);   /* Large padding */
+            border-radius: var(--radius-lg); /* Large rounded corners */
+            box-shadow: var(--shadow-lg); /* Strong shadow */
+            display: none;              /* Initially hidden */
+            animation: fadeIn 0.5s ease; /* Entrance animation */
+            position: absolute;        /* Absolute positioning */
+            width: 100%;               /* Full width */
+            top: 0;                    /* Align top */
+            left: 0;                   /* Align left */
+        }
+
+        /* Active state for contact details */
+        .contact-details.active {
+            display: block;            /* Show when active */
+        }
+
+        .contact-info {
+            margin-top: var(--space-md); /* Spacing above */
+            text-align: center;        /* Center content */
+        }
+
+        .contact-info p {
+            margin: var(--space-sm) 0; /* Vertical spacing */
+        }
+
+        .contact-info a {
+            color: var(--bright-blue); /* Blue link color */
+            transition: color var(--transition-fast);    /* Smooth color transition */
+            font-weight: 600;          /* Semi-bold */
+        }
+
+        /* Hover effect for contact links */
+        .contact-info a:hover {
+            color: var(--dark-teal);   /* Dark teal on hover */
+            text-decoration: underline; /* Underline on hover */
+        }
+
+        /* ============================================= */
+        /* ============ FOOTER ======================= */
+        /* ============================================= */
+
+        /**
+         * Footer Styles
+         * Site footer with dark background
+         */
+        .footer {
+            background-color: var(--dark-teal); /* Dark teal background */
+            color: var(--white);       /* White text */
+            padding: var(--space-lg);  /* Large padding */
+            text-align: center;        /* Center content */
+        }
+
+        .footer-content {
+            max-width: 1200px;         /* Maximum width */
+            margin: 0 auto;            /* Center horizontally */
+        }
+
+        /* ============================================= */
+        /* ============ ANIMATIONS =================== */
+        /* ============================================= */
+
+        /**
+         * Fade In Animation
+         * Used for showing hidden elements
+         */
+        @keyframes fadeIn {
+            from { 
+                opacity: 0;            /* Start invisible */
+                transform: translateY(20px); /* Start slightly below */
+            }
+            to { 
+                opacity: 1;            /* Fade in */
+                transform: translateY(0); /* Move to normal position */
+            }
+        }
+
+        /**
+         * Fade In Up Animation
+         * Used for hero section entrance
+         */
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0;            /* Start invisible */
+                transform: translateY(40px); /* Start further below */
+            }
+            to { 
+                opacity: 1;            /* Fade in */
+                transform: translateY(0); /* Move to normal position */
+            }
+        }
+
+        /* ============================================= */
+        /* ============ RESPONSIVE ADJUSTMENTS ======== */
+        /* ============================================= */
+
+        /**
+         * Medium Screens (Tablets)
+         * Adjustments for screens up to 992px
+         */
+        @media (max-width: 992px) {
+            body {
+                padding-left: 0;       /* Remove side nav space */
+            }
+            
+            /* Side navigation for mobile */
+            .side-nav {
+                transform: translateX(-100%); /* Hide off-screen */
+                width: 280px;          /* Slightly narrower */
+            }
+            
+            /* Show side nav when active */
+            .side-nav.active {
+                transform: translateX(0); /* Slide in */
+                box-shadow: var(--shadow-xl); /* Strong shadow when open */
+            }
+            
+            /* Mobile menu toggle button */
+            .menu-toggle {
+                display: flex;        /* Show toggle button */
+                align-items: center;
+                justify-content: center;
+                position: fixed;       /* Fixed position */
+                top: 20px;             /* From top */
+                left: 20px;            /* From left */
+                z-index: 1100;         /* Above other content */
+                background: var(--dark-teal); /* Dark teal background */
+                color: white;          /* White icon */
+                border: none;          /* No border */
+                width: 50px;           /* Fixed size */
+                height: 50px;          /* Fixed size */
+                border-radius: 50%;    /* Circular shape */
+                font-size: 1.5rem;     /* Icon size */
+                cursor: pointer;       /* Pointer cursor */
+                box-shadow: var(--shadow-md); /* Medium shadow */
+                transition: all var(--transition-normal); /* Smooth transitions */
+            }
+            
+            /* Hover effect for menu toggle */
+            .menu-toggle:hover {
+                transform: scale(1.1); /* Slight scale up */
+                background: var(--bright-blue);
+            }
+
+            /* Adjust section padding for mobile */
+            .title-page,
+            .education-page,
+            .skills-page,
+            .contact-section {
+                padding: var(--space-xl) 0;
+            }
+        }
+
+        /**
+         * Small Screens (Large Phones)
+         * Adjustments for screens up to 768px
+         */
+        @media (max-width: 768px) {
+            /* Single column layout for skills */
+            .skills-grid {
+                grid-template-columns: 1fr; /* Single column */
+            }
+            
+            /* Stack buttons vertically */
+            .button-group,
+            .navigation-buttons {
+                flex-direction: column; /* Vertical layout */
+                align-items: center;    /* Center buttons */
+            }
+            
+            /* Full width buttons */
+            .button {
+                width: 100%;           /* Full width */
+                max-width: 300px;      /* But not too wide */
+            }
+
+            /* Smaller social icons */
+            .social-icon {
+                width: 60px;           /* Smaller size */
+                height: 60px;          /* Smaller size */
+            }
+
+            /* Adjust table cell padding */
+            th, td {
+                padding: var(--space-xs) var(--space-sm);
+            }
+        }
+
+        /**
+         * Extra Small Screens (Phones)
+         * Adjustments for screens up to 480px
+         */
+        @media (max-width: 480px) {
+            /* Reduce section padding */
+            .section-container {
+                padding: var(--space-lg) var(--space-md); /* Smaller padding */
+            }
+
+            /* Smaller skill images */
+            .skill-image {
+                width: 60px;           /* Smaller size */
+                height: 60px;          /* Smaller size */
+            }
+            
+            /* Full width tables */
+            table {
+                min-width: 100%;       /* No minimum width */
+            }
+            
+            /* Smaller cell padding */
+            th, td {
+                padding: var(--space-xs); /* Extra small padding */
+                font-size: 0.9rem;     /* Smaller font */
+            }
+
+            /* Adjust cover page padding */
+            .cover-page {
+                padding: var(--space-lg);
+            }
+
+            /* Adjust profile image size */
+            .profile-image {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
+        /* ============================================= */
+        /* ============ UTILITY CLASSES ============== */
+        /* ============================================= */
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-sm { margin-top: var(--space-sm); }
+        .mt-md { margin-top: var(--space-md); }
+        .mt-lg { margin-top: var(--space-lg); }
+        .mt-xl { margin-top: var(--space-xl); }
+
+        .mb-sm { margin-bottom: var(--space-sm); }
+        .mb-md { margin-bottom: var(--space-md); }
+        .mb-lg { margin-bottom: var(--space-lg); }
+        .mb-xl { margin-bottom: var(--space-xl); }
     </style>
 </head>
 <body>
-
-    
     <!-- Side Navigation Menu -->
     <nav class="side-nav" id="sideNav">
         <div class="profile-section">
@@ -991,7 +1015,7 @@ tr:hover {
         </div>
         
         <ul class="nav-menu">
-            <li><a href="#cover"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#cover" class="active"><i class="fas fa-home"></i> Home</a></li>
             <li><a href="#title"><i class="fas fa-user"></i> About</a></li>
             <li><a href="#skills"><i class="fas fa-code"></i> Skills</a></li>
             <li><a href="#education"><i class="fas fa-graduation-cap"></i> Education</a></li>
@@ -1010,7 +1034,7 @@ tr:hover {
             </div>
             <div class="contact-item">
                 <i class="fas fa-map-marker-alt"></i>
-                <span>24 Rajnadani, umra gav , velnja , Surat</span>
+                <span>24 Rajnadani, umra gav, velnja, Surat</span>
             </div>
             
             <div class="social-links">
@@ -1033,7 +1057,14 @@ tr:hover {
                     <p>"Design is not just what it looks like—it's how it works."</p>
                     <cite>- Steve Jobs</cite>
                 </blockquote>
-                <a href="#title" class="button primary">Explore My Work ↓</a>
+                <div class="button-group">
+                    <a href="#title" class="button primary">
+                        <i class="fas fa-arrow-down"></i> Explore My Work
+                    </a>
+                    <a href="#contact" class="button secondary">
+                        <i class="fas fa-paper-plane"></i> Contact Me
+                    </a>
+                </div>
             </div>
         </header>
 
@@ -1043,8 +1074,12 @@ tr:hover {
                     <h2>Welcome to My Creative World</h2>
                     <p class="intro-text">With 3+ years of professional experience, I specialize in creating visually stunning designs that communicate effectively and leave lasting impressions. My expertise spans across digital art, branding, and user interface design.</p>
                     <div class="button-group">
-                        <a href="#skills" class="button primary">View Skills</a>
-                        <a href="#education" class="button secondary">My Education</a>
+                        <a href="#skills" class="button primary">
+                            <i class="fas fa-code"></i> View Skills
+                        </a>
+                        <a href="#education" class="button secondary">
+                            <i class="fas fa-graduation-cap"></i> My Education
+                        </a>
                     </div>
                 </div>
             </section>
@@ -1071,212 +1106,142 @@ tr:hover {
                                 </tr>
                                 <tr>
                                     <td>Bachelor of Computer Applications</td>
-                                    <td> maharaja krushnakumarsihji University</td>
+                                    <td>Maharaja Krushnakumarsihji University</td>
                                     <td>2025 (Expected)</td>
                                     <td>8.5 CGPA (Current)</td>
                                 </tr>
                                 <tr>
                                     <td>Game Development Certification</td>
-                                    <td>Oengine game Development </td>
+                                    <td>Oengine Game Development</td>
                                     <td>03-2024</td>
                                     <td>Completed with Honors</td>
                                 </tr>
                                 <tr>
                                     <td>Graphic Design Certification</td>
-                                    <td>aram stodiyo </td>
+                                    <td>Aram Studio</td>
                                     <td>2023</td>
-                                    <td>intship letter</td>
+                                    <td>Internship Letter</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <a href="#skills" class="button primary">View My Skills</a>
+                    <div class="navigation-buttons">
+                        <a href="#title" class="button secondary">
+                            <i class="fas fa-arrow-up"></i> Back to About
+                        </a>
+                        <a href="#skills" class="button primary">
+                            <i class="fas fa-arrow-down"></i> View My Skills
+                        </a>
+                    </div>
                 </div>
             </section>            
-             <section class="skills-page" id="skills">
-                    <div class="section-container">
-                         <h2>My Design Expertise</h2>
-                                <div class="skills-grid">
-                                    <article class="skill-card">
-                                        <div class="skill-background" id="photoshop-bg"></div>
-                                        <div class="skill-content">
-                                            <div class="skill-header">
-                                                <img src="logo/photoshop.png" alt="Adobe Photoshop" class="skill-image" loading="lazy">
-                                                <h3>Adobe Photoshop</h3>
-                                            </div>
-                                            <p>Expert in photo editing, digital painting, and compositing with 3+ years of professional experience.</p>
-                                            <ul class="skill-details">
-                                                <li>Advanced photo manipulation</li>
-                                                <li>Professional retouching</li>
-                                                <li>Digital painting and illustration</li>
-                                                <li>Composite image creation</li>
-                                                <li>Non-destructive editing workflows</li>
-                                            </ul>
-                                        </div>
-                                    </article>
             
-                                    <article class="skill-card">
-                                        <div class="skill-background" id="illustrator-bg"></div>
-                                        <div class="skill-content">
-                                            <div class="skill-header">
-                                                <img src="logo/illustrator.png" alt="Adobe Illustrator" class="skill-image" loading="lazy">
-                                                <h3>Adobe Illustrator</h3>
-                                            </div>
-                                            <p>Skilled in vector graphics creation, specializing in logo design, branding, and illustrations.</p>
-                                            <ul class="skill-details">
-                                                <li>Logo and brand identity design</li>
-                                                <li>Vector illustration</li>
-                                                <li>Typography and font creation</li>
-                                                <li>Infographic design</li>
-                                                <li>Pattern and texture creation</li>
-                                            </ul>
-                                        </div>
-                                    </article>
-            
-                                    <article class="skill-card">
-                                        <div class="skill-background" id="coreldraw-bg"></div>
-                                        <div class="skill-content">
-                                            <div class="skill-header">
-                                                <img src="logo/coreldraw-seeklogo.png" alt="CorelDRAW" class="skill-image" loading="lazy">
-                                                <h3>CorelDRAW</h3>
-                                            </div>
-                                            <p>Proficient in layout design for both print and digital media with strong technical skills.</p>
-                                            <ul class="skill-details">
-                                                <li>Print design and layout</li>
-                                                <li>Brochure and magazine design</li>
-                                                <li>Packaging design</li>
-                                                <li>Technical illustration</li>
-                                                <li>Vector tracing and conversion</li>
-                                                <li>laser marking and cutting</li>
-                                            </ul>
-                                        </div>
-                                    </article>
-            
-                                    <article class="skill-card">
-                                        <div class="skill-background" id="figma-bg"></div>
-                                        <div class="skill-content">
-                                            <div class="skill-header">
-                                                <img src="logo/figma.png" alt="Figma" class="skill-image" loading="lazy">
-                                                <h3>Figma</h3>
-                                            </div>
-                                            <p>Experienced in UI/UX design and prototyping for web and mobile applications.</p>
-                                            <ul class="skill-details">
-                                                <li>Wireframing and prototyping</li>
-                                                <li>User interface design</li>
-                                                <li>Design systems creation</li>
-                                                <li>Interactive components</li>
-                                                <li>Collaborative design workflows</li>
-                                            </ul>
-                                        </div>
-                                    </article>
-            
-                                    <article class="skill-card">
-                                        <div class="skill-background" id="premiere-bg"></div>
-                                        <div class="skill-content">
-                                            <div class="skill-header">
-                                                <img src="logo/premiere.png" alt="Premiere Pro" class="skill-image" loading="lazy">
-                                                <h3>Adobe Premiere Pro</h3>
-                                            </div>
-                                            <p>Skilled in video editing and motion graphics for various digital platforms.</p>
-                                            <ul class="skill-details">
-                                                <li>Video editing and sequencing</li>
-                                                <li>Color correction and grading</li>
-                                                <li>Basic motion graphics</li>
-                                                <li>Audio synchronization</li>
-                                                <li>Export optimization</li>
-                                            </ul>
-                                        </div>
-                                    </article>
+            <section class="skills-page" id="skills">
+                <div class="section-container">
+                    <h2>My Design Expertise</h2>
+                    <div class="skills-grid">
+                        <article class="skill-card">
+                            <div class="skill-background" id="photoshop-bg"></div>
+                            <div class="skill-content">
+                                <div class="skill-header">
+                                    <img src="logo/photoshop.png" alt="Adobe Photoshop" class="skill-image" loading="lazy">
+                                    <h3>Adobe Photoshop</h3>
                                 </div>
-                                <div class="navigation-buttons">
-                                    <a href="#education" class="button secondary">View Education</a>
-                                    <a href="#contact" class="button primary">Contact Me</a>
-                                </div>
+                                <p>Expert in photo editing, digital painting, and compositing with 3+ years of professional experience.</p>
+                                <ul class="skill-details">
+                                    <li>Advanced photo manipulation</li>
+                                    <li>Professional retouching</li>
+                                    <li>Digital painting and illustration</li>
+                                    <li>Composite image creation</li>
+                                    <li>Non-destructive editing workflows</li>
+                                </ul>
                             </div>
-             </section>
-            
-                <!-- [Rest of the HTML content remains the same] -->
-            
-               <script>
-                  document.addEventListener('DOMContentLoaded', function() {
-    // Sample images for each skill (replace with your actual image URLs)
-    const skillBackgrounds = {
-        'photoshop': [
-            'url("01.jpg")',
-            'url("02.jpg")',
-            'url("03.jpg")',
-            'url("04.jpg")'
-        ],
-        'illustrator': [
-            'url("illustrator/01.png")',
-            'url("illustrator/02.png")',
-            'url("illustrator/03.png")',
-            'url("illustrator/04.png")',
-        ],
-        'coreldraw': [
-            'url("09.jpg")',
-            'url("010.jpg")',
-            'url("11.jpg")',
-            'url("12.jpg")'
-        ],
-        'figma': [
-            'url("images/figma/ui1.jpg")',
-            'url("images/figma/ui2.jpg")',
-            'url("images/figma/ui3.jpg")',
-            'url("images/figma/ui4.jpg")'
-        ],
-        'premiere': [
-            'url("images/premiere/video1.jpg")',
-            'url("images/premiere/video2.jpg")',
-            'url("images/premiere/video3.jpg")',
-            'url("images/premiere/video4.jpg")'
-        ]
-    };
-
-    // Initialize background rotation for each skill
-    Object.keys(skillBackgrounds).forEach(skill => {
-        const bgElement = document.getElementById(`${skill}-bg`);
-        const images = skillBackgrounds[skill];
+                        </article>
         
-        if (bgElement && images.length > 0) {
-            // Create a secondary background element
-            const secondaryBg = bgElement.cloneNode();
-            secondaryBg.classList.add('secondary');
-            bgElement.parentNode.insertBefore(secondaryBg, bgElement.nextSibling);
+                        <article class="skill-card">
+                            <div class="skill-background" id="illustrator-bg"></div>
+                            <div class="skill-content">
+                                <div class="skill-header">
+                                    <img src="logo/illustrator.png" alt="Adobe Illustrator" class="skill-image" loading="lazy">
+                                    <h3>Adobe Illustrator</h3>
+                                </div>
+                                <p>Skilled in vector graphics creation, specializing in logo design, branding, and illustrations.</p>
+                                <ul class="skill-details">
+                                    <li>Logo and brand identity design</li>
+                                    <li>Vector illustration</li>
+                                    <li>Typography and font creation</li>
+                                    <li>Infographic design</li>
+                                    <li>Pattern and texture creation</li>
+                                </ul>
+                            </div>
+                        </article>
+        
+                        <article class="skill-card">
+                            <div class="skill-background" id="coreldraw-bg"></div>
+                            <div class="skill-content">
+                                <div class="skill-header">
+                                    <img src="logo/coreldraw-seeklogo.png" alt="CorelDRAW" class="skill-image" loading="lazy">
+                                    <h3>CorelDRAW</h3>
+                                </div>
+                                <p>Proficient in layout design for both print and digital media with strong technical skills.</p>
+                                <ul class="skill-details">
+                                    <li>Print design and layout</li>
+                                    <li>Brochure and magazine design</li>
+                                    <li>Packaging design</li>
+                                    <li>Technical illustration</li>
+                                    <li>Vector tracing and conversion</li>
+                                    <li>Laser marking and cutting</li>
+                                </ul>
+                            </div>
+                        </article>
+        
+                        <article class="skill-card">
+                            <div class="skill-background" id="figma-bg"></div>
+                            <div class="skill-content">
+                                <div class="skill-header">
+                                    <img src="logo/figma.png" alt="Figma" class="skill-image" loading="lazy">
+                                    <h3>Figma</h3>
+                                </div>
+                                <p>Experienced in UI/UX design and prototyping for web and mobile applications.</p>
+                                <ul class="skill-details">
+                                    <li>Wireframing and prototyping</li>
+                                    <li>User interface design</li>
+                                    <li>Design systems creation</li>
+                                    <li>Interactive components</li>
+                                    <li>Collaborative design workflows</li>
+                                </ul>
+                            </div>
+                        </article>
+        
+                        <article class="skill-card">
+                            <div class="skill-background" id="premiere-bg"></div>
+                            <div class="skill-content">
+                                <div class="skill-header">
+                                    <img src="logo/premiere.png" alt="Premiere Pro" class="skill-image" loading="lazy">
+                                    <h3>Adobe Premiere Pro</h3>
+                                </div>
+                                <p>Skilled in video editing and motion graphics for various digital platforms.</p>
+                                <ul class="skill-details">
+                                    <li>Video editing and sequencing</li>
+                                    <li>Color correction and grading</li>
+                                    <li>Basic motion graphics</li>
+                                    <li>Audio synchronization</li>
+                                    <li>Export optimization</li>
+                                </ul>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="navigation-buttons">
+                        <a href="#education" class="button secondary">
+                            <i class="fas fa-arrow-up"></i> View Education
+                        </a>
+                        <a href="#contact" class="button primary">
+                            <i class="fas fa-paper-plane"></i> Contact Me
+                        </a>
+                    </div>
+                </div>
+            </section>
             
-            let currentIndex = 0;
-            let nextIndex = 1;
-            
-            // Set initial background
-            bgElement.style.backgroundImage = images[currentIndex];
-            secondaryBg.style.backgroundImage = images[nextIndex];
-            
-            // Rotate images every 5 seconds with smooth crossfade
-            setInterval(() => {
-                // Update indices
-                currentIndex = nextIndex;
-                nextIndex = (nextIndex + 1) % images.length;
-                
-                // Set next image to secondary background
-                secondaryBg.style.backgroundImage = images[nextIndex];
-                
-                // Crossfade animation
-                bgElement.style.opacity = '0';
-                secondaryBg.style.opacity = '0.2';
-                
-                // After transition completes, swap roles
-                setTimeout(() => {
-                    // Move the primary background to the back
-                    bgElement.style.backgroundImage = images[currentIndex];
-                    bgElement.style.opacity = '0.2';
-                    secondaryBg.style.opacity = '0';
-                }, 2000); // Keep this at 2 seconds for the fade effect
-                
-            }, 5000); // Change image every 5 seconds
-        }
-    });
-});</script>
-
             <section class="contact-section" id="contact">
                 <div class="section-container">
                     <h2>Get In Touch</h2>
@@ -1292,7 +1257,6 @@ tr:hover {
                         <div class="social-icon" onclick="showContact('whatsapp')" title="WhatsApp">
                             <i class="fab fa-whatsapp"></i>
                         </div>
-                        
                         <div class="social-icon" onclick="showContact('instagram')" title="Instagram">
                             <i class="fab fa-instagram"></i>
                         </div>
@@ -1305,7 +1269,7 @@ tr:hover {
                                 <p><strong>Primary Email:</strong> <a href="mailto:jaimishkachhadiya@gmail.com">jaimishkachhadiya@gmail.com</a></p>
                                 <p><strong>Work Email:</strong> <a href="mailto:bcastudent869@gmail.com">bcastudent869@gmail.com</a></p>
                                 <p>I typically respond within 24 hours for professional inquiries</p>
-                                <a href="mailto:jaimishkachhadiya@gmail.com" class="button primary" style="margin-top: var(--space-sm);">
+                                <a href="mailto:jaimishkachhadiya@gmail.com" class="button primary mt-md">
                                     <i class="fas fa-envelope"></i> Send Email
                                 </a>
                             </div>
@@ -1317,7 +1281,7 @@ tr:hover {
                                 <p><strong>Mobile:</strong> <a href="tel:+919316550878">+91 9316550878</a></p>
                                 <p><strong>Availability:</strong> 10AM - 7PM (Monday to Friday)</p>
                                 <p>Please send a text message if I don't answer your call</p>
-                                <a href="tel:+919316550878" class="button primary" style="margin-top: var(--space-sm);">
+                                <a href="tel:+919316550878" class="button primary mt-md">
                                     <i class="fas fa-phone"></i> Call Now
                                 </a>
                             </div>
@@ -1329,20 +1293,18 @@ tr:hover {
                                 <p><strong>Number:</strong> <a href="https://wa.me/919316550878">+91 9316550878</a></p>
                                 <p>Feel free to message me anytime for quick inquiries</p>
                                 <p>Preferred for international contacts</p>
-                                <a href="https://wa.me/919316550878" class="button primary" style="margin-top: var(--space-sm);">
+                                <a href="https://wa.me/919316550878" class="button primary mt-md">
                                     <i class="fab fa-whatsapp"></i> Message Now
                                 </a>
                             </div>
                         </div>
-
-                        
 
                         <div id="instagram-details" class="contact-details">
                             <h3>Instagram</h3>
                             <div class="contact-info">
                                 <p>View my design portfolio and creative work</p>
                                 <p><strong>Profile:</strong> <a href="https://www.instagram.com/mr.kachhadiya73?igsh=cGpqdm42ajd0ZnU0" target="_blank">instagram.com/mr.kachhadiya73</a></p>
-                                <a href="https://www.instagram.com/mr.kachhadiya73?igsh=cGpqdm42ajd0ZnU0" class="button primary" style="margin-top: var(--space-sm);" target="_blank">
+                                <a href="https://www.instagram.com/mr.kachhadiya73?igsh=cGpqdm42ajd0ZnU0" class="button primary mt-md" target="_blank">
                                     <i class="fab fa-instagram"></i> View Portfolio
                                 </a>
                             </div>
@@ -1355,9 +1317,10 @@ tr:hover {
         <footer class="footer">
             <div class="footer-content">
                 <p>&copy; <span id="current-year"></span> Jaimish Kachhadiya. All rights reserved.</p>
-                <div class="social-links">
+                <div class="social-links mt-md">
                     <a href="https://www.instagram.com/mr.kachhadiya73?igsh=cGpqdm42ajd0ZnU0" aria-label="Instagram Profile" target="_blank"><i class="fab fa-instagram"></i></a>
                     <a href="https://www.linkedin.com/in/jaimish-kachhadiya-1b2a3b4c5d6e/" aria-label="LinkedIn Profile" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://wa.me/919316550878" aria-label="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
         </footer>
@@ -1382,29 +1345,47 @@ tr:hover {
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     window.scrollTo({
-                        top: target.offsetTop,
+                        top: target.offsetTop - 20,
                         behavior: 'smooth'
                     });
+                    
+                    // Update active nav link
+                    document.querySelectorAll('.nav-menu a').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    const navLink = document.querySelector(`.nav-menu a[href="${this.getAttribute('href')}"]`);
+                    if (navLink) navLink.classList.add('active');
                 }
             });
-        });
+        }
 
         // Mobile menu toggle
         const menuToggle = document.getElementById('menuToggle');
         const sideNav = document.getElementById('sideNav');
 
         if (window.innerWidth <= 992) {
-            menuToggle.style.display = 'block';
+            menuToggle.style.display = 'flex';
             
             menuToggle.addEventListener('click', () => {
                 sideNav.classList.toggle('active');
+                menuToggle.innerHTML = sideNav.classList.contains('active') ? 
+                    '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
             });
             
             // Close menu when clicking on a link
             document.querySelectorAll('.nav-menu a').forEach(link => {
                 link.addEventListener('click', () => {
                     sideNav.classList.remove('active');
+                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
                 });
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!sideNav.contains(e.target) && e.target !== menuToggle) {
+                    sideNav.classList.remove('active');
+                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                }
             });
         }
         
@@ -1413,9 +1394,90 @@ tr:hover {
             if (window.innerWidth > 992) {
                 menuToggle.style.display = 'none';
                 sideNav.classList.remove('active');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
             } else {
-                menuToggle.style.display = 'block';
+                menuToggle.style.display = 'flex';
             }
+        });
+
+        // Initialize skill backgrounds
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sample images for each skill (replace with your actual image URLs)
+            const skillBackgrounds = {
+                'photoshop': [
+                    'url("01.jpg")',
+                    'url("02.jpg")',
+                    'url("03.jpg")',
+                    'url("04.jpg")'
+                ],
+                'illustrator': [
+                    'url("illustrator/01.png")',
+                    'url("illustrator/02.png")',
+                    'url("illustrator/03.png")',
+                    'url("illustrator/04.png")',
+                ],
+                'coreldraw': [
+                    'url("09.jpg")',
+                    'url("010.jpg")',
+                    'url("11.jpg")',
+                    'url("12.jpg")'
+                ],
+                'figma': [
+                    'url("images/figma/ui1.jpg")',
+                    'url("images/figma/ui2.jpg")',
+                    'url("images/figma/ui3.jpg")',
+                    'url("images/figma/ui4.jpg")'
+                ],
+                'premiere': [
+                    'url("images/premiere/video1.jpg")',
+                    'url("images/premiere/video2.jpg")',
+                    'url("images/premiere/video3.jpg")',
+                    'url("images/premiere/video4.jpg")'
+                ]
+            };
+
+            // Initialize background rotation for each skill
+            Object.keys(skillBackgrounds).forEach(skill => {
+                const bgElement = document.getElementById(`${skill}-bg`);
+                const images = skillBackgrounds[skill];
+                
+                if (bgElement && images.length > 0) {
+                    // Create a secondary background element
+                    const secondaryBg = bgElement.cloneNode();
+                    secondaryBg.classList.add('secondary');
+                    bgElement.parentNode.insertBefore(secondaryBg, bgElement.nextSibling);
+                    
+                    let currentIndex = 0;
+                    let nextIndex = 1;
+                    
+                    // Set initial background
+                    bgElement.style.backgroundImage = images[currentIndex];
+                    secondaryBg.style.backgroundImage = images[nextIndex];
+                    
+                    // Rotate images every 5 seconds with smooth crossfade
+                    setInterval(() => {
+                        // Update indices
+                        currentIndex = nextIndex;
+                        nextIndex = (nextIndex + 1) % images.length;
+                        
+                        // Set next image to secondary background
+                        secondaryBg.style.backgroundImage = images[nextIndex];
+                        
+                        // Crossfade animation
+                        bgElement.style.opacity = '0';
+                        secondaryBg.style.opacity = '0.2';
+                        
+                        // After transition completes, swap roles
+                        setTimeout(() => {
+                            // Move the primary background to the back
+                            bgElement.style.backgroundImage = images[currentIndex];
+                            bgElement.style.opacity = '0.2';
+                            secondaryBg.style.opacity = '0';
+                        }, 2000); // Keep this at 2 seconds for the fade effect
+                        
+                    }, 5000); // Change image every 5 seconds
+                }
+            });
         });
     </script>
 </body>
