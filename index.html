@@ -12,8 +12,976 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
  <link rel="stylesheet" href="styles.css">
+    <style >
+        /* ============================================= */
+/* ============ GLOBAL STYLES ================= */
+/* ============================================= */
+
+/**
+ * CSS Variables (Custom Properties)
+ * These variables define the design system for the entire application
+ * including colors, spacing, border-radius, and shadows.
+ */
+ :root {
+    /* Color Palette */
+    --dark-teal: #264653;       /* Primary dark color for headers/nav */
+    --bright-blue: #2A9DF4;     /* Primary accent color for buttons/links */
+    --light-yellow: #E9C46A;    /* Secondary accent color */
+    --orange: #F4A261;          /* Tertiary accent color */
+    --white: #ffffff;           /* Pure white for text/backgrounds */
+    --off-white: #f8f9fa;       /* Off-white for page background */
+    --dark-gray: #333333;       /* Dark gray for text */
+    
+    /* Spacing System (8px baseline) */
+    --space-xs: 0.5rem;         /* 4px - for tight spacing */
+    --space-sm: 1rem;           /* 8px - default spacing */
+    --space-md: 1.5rem;         /* 12px - medium spacing */
+    --space-lg: 2rem;           /* 16px - large spacing */
+    --space-xl: 3rem;           /* 24px - extra large spacing */
+    
+    /* Border Radius */
+    --radius-sm: 4px;           /* Small rounded corners */
+    --radius-md: 8px;           /* Medium rounded corners */
+    --radius-lg: 12px;          /* Large rounded corners */
+    
+    /* Box Shadows */
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);     /* Subtle shadow */
+    --shadow-md: 0 4px 8px rgba(0,0,0,0.15);    /* Medium shadow */
+    --shadow-lg: 0 8px 16px rgba(0,0,0,0.2);    /* Strong shadow */
+}
+
+/**
+ * Base Reset
+ * Resets default browser styles and sets up box-sizing
+ */
+* {
+    box-sizing: border-box;     /* Include padding/border in element sizing */
+    margin: 0;                  /* Remove default margins */
+    padding: 0;                 /* Remove default padding */
+}
+
+/**
+ * HTML Root Element
+ * Sets up smooth scrolling behavior for anchor links
+ */
+html {
+    scroll-behavior: smooth;    /* Enable smooth scrolling */
+}
+
+  /* Add these styles to enhance typography */
+  .profile-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.8rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.profile-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    color: var(--light-yellow);
+    text-transform: uppercase;
+}
+
+/* Education section enhancements */
+.education-page h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+    position: relative;
+    display: inline-block;
+}
+
+.education-page h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--light-yellow);
+}
+
+table {
+    font-family: 'Poppins', sans-serif;
+}
+
+th {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+}
+
+td {
+    font-weight: 400;
+}
+
+/* Skill cards title enhancement */
+.skill-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-top: 1rem;
+}
+
+
+
+/**
+ * Body Styles
+ * Sets up the base typography and layout for the page
+ */
+body {
+    font-family: 'Poppins', sans-serif;  /* Primary font family */
+    line-height: 1.6;                    /* Comfortable line spacing */
+    color: var(--dark-teal);             /* Default text color */
+    background-color: var(--off-white);  /* Page background */
+    overflow-x: hidden;                  /* Prevent horizontal scroll */
+    padding-left: 300px;                 /* Space for fixed side navigation */
+}
+
+/* ============================================= */
+/* ============ SIDE NAVIGATION =============== */
+/* ============================================= */
+
+/**
+ * Side Navigation Container
+ * Fixed position sidebar that contains profile info and navigation
+ */
+.side-nav {
+    position: fixed;            /* Fixed to viewport */
+    top: 0;
+    left: 0;
+    width: 300px;               /* Fixed width */
+    height: 100vh;              /* Full viewport height */
+    background-color: var(--dark-teal);  /* Dark background */
+    color: var(--white);        /* Light text color */
+    padding: var(--space-xl);   /* Large padding */
+    overflow-y: auto;           /* Enable vertical scrolling if needed */
+    z-index: 1000;              /* Ensure nav stays above other content */
+    box-shadow: var(--shadow-lg); /* Depth effect */
+    
+    /* Animation for mobile toggle */
+    transition: transform 0.3s ease;
+}
+
+/**
+ * Profile Section
+ * Contains the user's profile image, name, and title
+ */
+.profile-section {
+    text-align: center;         /* Center align content */
+    margin-bottom: var(--space-xl); /* Spacing below section */
+}
+
+.profile-image {
+    width: 150px;               /* Fixed size */
+    height: 150px;
+    border-radius: 50%;         /* Circular image */
+    object-fit: cover;          /* Ensure image fills space */
+    border: 5px solid var(--light-yellow); /* Accent border */
+    margin: 0 auto var(--space-md); /* Centered with bottom margin */
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.profile-image:hover {
+    transform: scale(1.05);     /* Slight scale on hover */
+    border-color: var(--orange); /* Change border color */
+}
+
+.profile-name {
+    font-family: 'Playfair Display', serif; /* Elegant font for name */
+    font-size: 1.5rem;          /* Large text size */
+    margin-bottom: var(--space-xs); /* Small spacing below */
+    font-weight: 700;           /* Bold weight */
+}
+
+.profile-title {
+    color: var(--light-yellow); /* Accent color */
+    margin-bottom: var(--space-md); /* Medium spacing below */
+    font-weight: 600;           /* Semi-bold */
+    font-size: 1.1rem;          /* Slightly larger than body text */
+}
+
+/**
+ * Navigation Menu
+ * List of navigation links with icons
+ */
+.nav-menu {
+    list-style: none;           /* Remove default list styling */
+    margin: var(--space-xl) 0;  /* Vertical spacing */
+}
+
+.nav-menu li {
+    margin-bottom: var(--space-sm); /* Space between items */
+}
+
+.nav-menu a {
+    display: block;             /* Make entire area clickable */
+    padding: var(--space-sm);   /* Comfortable padding */
+    color: var(--white);       /* Light text */
+    border-radius: var(--radius-sm); /* Rounded corners */
+    transition: all 0.3s ease;  /* Smooth hover effects */
+    font-weight: 500;           /* Medium weight */
+}
+
+/* Hover and active states for nav items */
+.nav-menu a:hover,
+.nav-menu a:focus {
+    background-color: rgba(255,255,255,0.1); /* Light overlay */
+    transform: translateX(5px); /* Slight right movement */
+    outline: none;              /* Remove focus outline */
+}
+
+.nav-menu i {
+    margin-right: var(--space-sm); /* Space between icon and text */
+    width: 20px;                /* Fixed icon width */
+    text-align: center;         /* Center icons */
+    font-size: 1.1rem;         /* Slightly larger icons */
+}
+
+/**
+ * Contact Information in Sidebar
+ * Contains contact details and social links
+ */
+.contact-info-side {
+    margin-top: var(--space-xl); /* Spacing above section */
+    padding-top: var(--space-md); /* Top padding */
+    border-top: 1px solid rgba(255,255,255,0.1); /* Subtle divider */
+}
+
+.contact-info-side h4 {
+    font-family: 'Playfair Display', serif; /* Elegant font */
+    margin-bottom: var(--space-md); /* Spacing below heading */
+    font-size: 1.2rem;          /* Slightly larger text */
+    color: var(--light-yellow); /* Accent color */
+}
+
+.contact-item {
+    display: flex;              /* Flex layout for icon + text */
+    align-items: center;        /* Vertical alignment */
+    margin-bottom: var(--space-sm); /* Space between items */
+    font-size: 0.9rem;         /* Slightly smaller text */
+}
+
+.contact-item i {
+    margin-right: var(--space-sm); /* Space between icon and text */
+    color: var(--light-yellow); /* Accent color for icons */
+    width: 20px;                /* Fixed width */
+    font-size: 1rem;           /* Icon size */
+}
+
+/**
+ * Social Links
+ * Styling for social media icons
+ */
+.social-links {
+    display: flex;              /* Horizontal layout */
+    gap: var(--space-sm);       /* Space between icons */
+    margin-top: var(--space-md); /* Spacing above section */
+    justify-content: center;    /* Center icons */
+}
+
+.social-links a {
+    color: var(--white);        /* Light icons */
+    font-size: 1.2rem;         /* Icon size */
+    transition: all 0.3s ease;  /* Smooth transitions */
+    display: inline-flex;       /* Flex layout */
+    width: 36px;               /* Fixed size */
+    height: 36px;              /* Fixed size */
+    border-radius: 50%;        /* Circular shape */
+    background: rgba(255,255,255,0.1); /* Subtle background */
+    align-items: center;       /* Center vertically */
+    justify-content: center;   /* Center horizontally */
+}
+
+/* Hover effects for social links */
+.social-links a:hover {
+    transform: translateY(-3px); /* Lift effect */
+    background: rgba(255,255,255,0.2); /* Brighter background */
+    box-shadow: var(--shadow-sm); /* Subtle shadow */
+}
+
+/* ============================================= */
+/* ============ MAIN CONTENT ================== */
+/* ============================================= */
+
+.main-content {
+    position: relative;         /* Positioning context */
+    min-height: 100vh;         /* At least full viewport height */
+}
+
+/**
+ * Typography
+ * Heading and text styles
+ */
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif; /* Elegant font for headings */
+    font-weight: 700;           /* Bold weight */
+    line-height: 1.2;           /* Tighter line spacing */
+    margin-bottom: var(--space-md); /* Consistent bottom margin */
+    color: var(--dark-teal);    /* Dark teal color */
+}
+
+/* Responsive typography using clamp() */
+h1 {
+    font-size: clamp(2.5rem, 5vw, 3.5rem); /* Scales between 2.5rem and 3.5rem */
+}
+
+h2 {
+    font-size: clamp(2rem, 4vw, 2.5rem); /* Scales between 2rem and 2.5rem */
+}
+
+h3 {
+    font-size: clamp(1.5rem, 3vw, 1.8rem); /* Scales between 1.5rem and 1.8rem */
+}
+
+/* Base text styles */
+p, li, td {
+    font-size: clamp(1rem, 2vw, 1.1rem); /* Responsive font sizing */
+    margin-bottom: var(--space-sm); /* Consistent bottom margin */
+    color: var(--dark-gray);    /* Dark gray for readability */
+}
+
+a {
+    text-decoration: none;      /* Remove underlines */
+    color: inherit;             /* Inherit text color */
+    transition: color 0.3s ease; /* Smooth color transitions */
+}
+
+/* ============================================= */
+/* ============ COVER/HERO SECTION ============ */
+/* ============================================= */
+
+/**
+ * Cover Page (Hero Section)
+ * Full-screen introductory section with gradient background
+ */
+.cover-page {
+    background: linear-gradient(135deg, var(--dark-teal), var(--bright-blue));
+    color: var(--white);        /* Light text */
+    min-height: 100vh;         /* Full viewport height */
+    display: flex;              /* Flex layout */
+    flex-direction: column;     /* Vertical stacking */
+    justify-content: center;    /* Vertical centering */
+    align-items: center;        /* Horizontal centering */
+    text-align: center;        /* Center text */
+    padding: var(--space-xl);  /* Large padding */
+    position: relative;        /* Positioning context */
+}
+
+.cover-content {
+    max-width: 800px;          /* Limit content width */
+    margin: 0 auto;            /* Center horizontally */
+    animation: fadeInUp 0.8s ease; /* Entrance animation */
+}
+
+.subtitle {
+    font-weight: 600;           /* Semi-bold */
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem); /* Responsive sizing */
+    text-transform: uppercase;  /* Uppercase text */
+    letter-spacing: 1px;       /* Slightly spaced letters */
+    margin: var(--space-md) 0; /* Vertical spacing */
+    color: var(--light-yellow); /* Accent color */
+}
+
+.tagline {
+    font-style: italic;         /* Italicized */
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem); /* Responsive sizing */
+    max-width: 600px;          /* Limit width */
+    margin: var(--space-lg) auto; /* Vertical spacing and centering */
+    line-height: 1.4;          /* Comfortable line spacing */
+}
+
+cite {
+    display: block;             /* Block display */
+    font-size: clamp(0.9rem, 1.8vw, 1rem); /* Responsive sizing */
+    margin-top: var(--space-xs); /* Small top margin */
+    opacity: 0.9;              /* Slightly transparent */
+    font-family: 'Poppins', sans-serif; /* Body font */
+    font-style: normal;        /* Normal (not italic) */
+}
+
+/* ============================================= */
+/* ============ BUTTON STYLES ================ */
+/* ============================================= */
+
+/**
+ * Button Base Styles
+ * Shared styles for all button variants
+ */
+.button {
+    display: inline-block;      /* Inline-block display */
+    padding: var(--space-sm) var(--space-md); /* Comfortable padding */
+    border-radius: var(--radius-md); /* Rounded corners */
+    transition: all 0.3s ease;  /* Smooth transitions */
+    cursor: pointer;            /* Pointer cursor */
+    font-weight: 600;           /* Semi-bold */
+    text-align: center;         /* Center text */
+    border: 2px solid transparent; /* Transparent border */
+    font-size: 1rem;           /* Base font size */
+}
+
+/**
+ * Primary Button
+ * Solid colored button for primary actions
+ */
+.button.primary {
+    background-color: var(--bright-blue); /* Blue background */
+    color: var(--white);       /* White text */
+    box-shadow: var(--shadow-sm); /* Subtle shadow */
+}
+
+/* Hover/focus states */
+.button.primary:hover,
+.button.primary:focus {
+    background-color: var(--dark-teal); /* Darker background */
+    transform: translateY(-2px); /* Lift effect */
+    box-shadow: var(--shadow-md); /* Stronger shadow */
+    outline: none;              /* Remove focus outline */
+}
+
+/**
+ * Secondary Button
+ * Outlined button for secondary actions
+ */
+.button.secondary {
+    background-color: transparent; /* Transparent background */
+    border-color: var(--bright-blue); /* Blue border */
+    color: var(--bright-blue); /* Blue text */
+}
+
+/* Hover/focus states */
+.button.secondary:hover,
+.button.secondary:focus {
+    background-color: var(--bright-blue); /* Blue background */
+    color: var(--white);       /* White text */
+    outline: none;              /* Remove focus outline */
+}
+
+/**
+ * Button Group
+ * Container for multiple buttons
+ */
+.button-group {
+    display: flex;              /* Flex layout */
+    gap: var(--space-sm);       /* Space between buttons */
+    justify-content: center;    /* Center buttons */
+    flex-wrap: wrap;            /* Wrap on small screens */
+    margin-top: var(--space-md); /* Spacing above */
+}
+
+/* ============================================= */
+/* ============ SECTION STYLES =============== */
+/* ============================================= */
+
+/**
+ * Section Container
+ * Wrapper for content sections
+ */
+.section-container {
+    max-width: 1200px;         /* Maximum width */
+    margin: 0 auto;            /* Center horizontally */
+    width: 90%;                /* 90% width on larger screens */
+    padding: var(--space-xl) 0; /* Vertical padding */
+}
+
+/**
+ * Title Page Section
+ * Section with yellow background
+ */
+.title-page {
+    background-color: var(--light-yellow); /* Yellow background */
+    text-align: center;        /* Center content */
+}
+
+/**
+ * Education Page Section
+ * Section with white background
+ */
+.education-page {
+    background-color: var(--white); /* White background */
+}
+
+/* ============================================= */
+/* ============ TABLE STYLES ================= */
+/* ============================================= */
+
+/**
+ * Table Container
+ * Wrapper for responsive tables
+ */
+.table-container {
+    overflow-x: auto;          /* Horizontal scrolling for small screens */
+    margin: var(--space-lg) 0; /* Vertical spacing */
+    box-shadow: var(--shadow-md); /* Medium shadow */
+    border-radius: var(--radius-md); /* Rounded corners */
+}
+
+/**
+ * Table Styles
+ * Styling for data tables
+ */
+table {
+    width: 100%;               /* Full width */
+    border-collapse: collapse; /* Remove cell spacing */
+    min-width: 600px;         /* Minimum width before scrolling */
+}
+
+th, td {
+    padding: var(--space-sm);  /* Cell padding */
+    text-align: left;          /* Left-aligned text */
+    border: 1px solid rgba(38, 70, 83, 0.1); /* Light borders */
+}
+
+th {
+    background-color: var(--light-yellow); /* Yellow header */
+    color: var(--dark-teal);   /* Dark text */
+    font-weight: 700;          /* Bold text */
+    position: sticky;          /* Sticky headers */
+    top: 0;                    /* Stick to top */
+}
+
+/* Zebra striping for rows */
+tr:nth-child(even) {
+    background-color: rgba(244, 162, 97, 0.1); /* Light orange */
+}
+
+/* Row hover effect */
+tr:hover {
+    background-color: rgba(217, 217, 217, 0.3); /* Light gray */
+}
+
+/* ============================================= */
+/* ============ SKILLS SECTION =============== */
+/* ============================================= */
+
+/**
+ * Skills Page Section
+ * Section with orange background
+ */
+.skills-page {
+    background-color: var(--orange); /* Orange background */
+}
+
+/**
+ * Skills Grid
+ * Responsive grid layout for skill cards
+ */
+.skills-grid {
+    display: grid;              /* Grid layout */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
+    gap: var(--space-lg);       /* Space between cards */
+    margin: var(--space-xl) 0;  /* Vertical spacing */
+}
+
+/**
+ * Skill Card
+ * Individual card for each skill category
+ */
+/* ============================================= */
+/* ============ SKILL BACKGROUNDS ============= */
+/* ============================================= */
+
+.skill-card {
+    position: relative;
+    overflow: hidden;
+    background-color: rgba(255,255,255,0.2);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+}
+
+.skill-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.2;
+    transition: opacity 1s ease-in-out;
+    /* Add these for smoother transitions */
+    will-change: opacity;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+/* Add a second background layer for crossfade effect */
+.skill-background.secondary {
+    opacity: 0;
+}
+
+.skill-content {
+    position: relative;
+    z-index: 1;
+    padding: 25px;
+    border-radius: 10px;
+    height: 100%;
+   /* background-color: rgba(255, 255, 255, 0.85);*/
+}
+/**
+ * Skill Header
+ * Contains skill icon and title
+ */
+.skill-header {
+    display: flex;              /* Flex layout */
+    flex-direction: column;     /* Vertical stacking */
+    align-items: center;        /* Center horizontally */
+    margin-bottom: var(--space-md); /* Spacing below */
+    position: relative;         /* Positioning context */
+    z-index: 2;                /* Above other elements */
+}
+
+.skill-image {
+    width: 80px;               /* Fixed size */
+    height: 80px;
+    object-fit: contain;        /* Maintain aspect ratio */
+    margin-bottom: var(--space-sm); /* Spacing below */
+    transition: transform 0.3s ease; /* Smooth transform */
+}
+
+/* Hover effect for skill images */
+.skill-card:hover .skill-image {
+    transform: scale(1.1);      /* Slight scale up */
+}
+
+/**
+ * Skill Details
+ * List of specific skills or attributes
+ */
+.skill-details {
+    text-align: left;           /* Left-aligned text */
+    padding-left: var(--space-md); /* Left padding */
+}
+
+.skill-details li {
+    position: relative;         /* Positioning context */
+    margin-bottom: var(--space-xs); /* Small spacing */
+    padding-left: var(--space-sm); /* Left padding */
+    list-style-type: none;      /* Remove bullets */
+}
+
+/* Custom bullet points */
+.skill-details li::before {
+    content: "•";               /* Bullet character */
+    position: absolute;         /* Absolute positioning */
+    left: 0;                    /* Align left */
+    color: var(--dark-teal);    /* Dark teal color */
+    font-weight: bold;          /* Bold bullet */
+}
+
+/* ============================================= */
+/* ============ CONTACT SECTION =============== */
+/* ============================================= */
+
+/**
+ * Contact Section
+ * Section with light yellow background
+ */
+.contact-section {
+    background-color: var(--light-yellow); /* Yellow background */
+    padding: var(--space-xl) 0; /* Vertical padding */
+    text-align: center;        /* Center content */
+}
+
+/**
+ * Social Icons
+ * Container for social media icons
+ */
+.social-icons {
+    display: flex;              /* Flex layout */
+    justify-content: center;    /* Center horizontally */
+    gap: var(--space-md);       /* Space between icons */
+    margin: var(--space-lg) 0;  /* Vertical spacing */
+    flex-wrap: wrap;            /* Wrap on small screens */
+}
+
+/**
+ * Social Icon
+ * Individual social media icon
+ */
+.social-icon {
+    width: 70px;               /* Fixed size */
+    height: 70px;
+    border-radius: 50%;        /* Circular shape */
+    background-color: var(--orange); /* Orange background */
+    display: flex;              /* Flex layout */
+    align-items: center;        /* Center vertically */
+    justify-content: center;    /* Center horizontally */
+    cursor: pointer;            /* Pointer cursor */
+    transition: all 0.3s ease;  /* Smooth transitions */
+    box-shadow: var(--shadow-sm); /* Subtle shadow */
+    position: relative;        /* Positioning context */
+    overflow: hidden;          /* Hide overflow */
+}
+
+/* Overlay effect for social icons */
+.social-icon::after {
+    content: '';               /* Empty content */
+    position: absolute;        /* Absolute positioning */
+    width: 100%;               /* Full width */
+    height: 100%;              /* Full height */
+    background: rgba(0,0,0,0.1); /* Semi-transparent overlay */
+    opacity: 0;                /* Initially hidden */
+    transition: opacity 0.3s;  /* Smooth transition */
+}
+
+/* Hover effects for social icons */
+.social-icon:hover {
+    transform: translateY(-5px); /* Lift effect */
+    box-shadow: var(--shadow-md); /* Stronger shadow */
+}
+
+.social-icon:hover::after {
+    opacity: 1;                /* Show overlay */
+}
+
+.social-icon i {
+    font-size: 1.75rem;        /* Icon size */
+    color: var(--white);       /* White icon */
+    transition: transform 0.3s; /* Smooth transform */
+    z-index: 1;                /* Above overlay */
+}
+
+/* Hover effect for icons */
+.social-icon:hover i {
+    transform: scale(1.1);     /* Slight scale up */
+}
+
+/**
+ * Contact Details Container
+ * Wrapper for contact information
+ */
+.contact-details-container {
+    max-width: 800px;          /* Maximum width */
+    margin: 0 auto;            /* Center horizontally */
+    min-height: 300px;         /* Minimum height */
+    position: relative;        /* Positioning context */
+}
+
+/**
+ * Contact Details
+ * Panel showing contact information
+ */
+.contact-details {
+    background-color: var(--white); /* White background */
+    padding: var(--space-lg);   /* Large padding */
+    border-radius: var(--radius-lg); /* Large rounded corners */
+    box-shadow: var(--shadow-lg); /* Strong shadow */
+    display: none;              /* Initially hidden */
+    animation: fadeIn 0.5s ease; /* Entrance animation */
+    position: absolute;        /* Absolute positioning */
+    width: 100%;               /* Full width */
+    top: 0;                    /* Align top */
+    left: 0;                   /* Align left */
+}
+
+/* Active state for contact details */
+.contact-details.active {
+    display: block;            /* Show when active */
+}
+
+.contact-info {
+    margin-top: var(--space-md); /* Spacing above */
+    text-align: center;        /* Center content */
+}
+
+.contact-info p {
+    margin: var(--space-sm) 0; /* Vertical spacing */
+}
+
+.contact-info a {
+    color: var(--bright-blue); /* Blue link color */
+    transition: color 0.3s;    /* Smooth color transition */
+    font-weight: 600;          /* Semi-bold */
+}
+
+/* Hover effect for contact links */
+.contact-info a:hover {
+    color: var(--dark-teal);   /* Dark teal on hover */
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* ============================================= */
+/* ============ FOOTER ======================= */
+/* ============================================= */
+
+/**
+ * Footer Styles
+ * Site footer with dark background
+ */
+.footer {
+    background-color: var(--dark-teal); /* Dark teal background */
+    color: var(--white);       /* White text */
+    padding: var(--space-lg);  /* Large padding */
+    text-align: center;        /* Center content */
+}
+
+.footer-content {
+    max-width: 1200px;         /* Maximum width */
+    margin: 0 auto;            /* Center horizontally */
+}
+
+/* ============================================= */
+/* ============ ANIMATIONS =================== */
+/* ============================================= */
+
+/**
+ * Fade In Animation
+ * Used for showing hidden elements
+ */
+@keyframes fadeIn {
+    from { 
+        opacity: 0;            /* Start invisible */
+        transform: translateY(20px); /* Start slightly below */
+    }
+    to { 
+        opacity: 1;            /* Fade in */
+        transform: translateY(0); /* Move to normal position */
+    }
+}
+
+/**
+ * Fade In Up Animation
+ * Used for hero section entrance
+ */
+@keyframes fadeInUp {
+    from { 
+        opacity: 0;            /* Start invisible */
+        transform: translateY(40px); /* Start further below */
+    }
+    to { 
+        opacity: 1;            /* Fade in */
+        transform: translateY(0); /* Move to normal position */
+    }
+}
+
+/* ============================================= */
+/* ============ RESPONSIVE ADJUSTMENTS ======== */
+/* ============================================= */
+
+/**
+ * Medium Screens (Tablets)
+ * Adjustments for screens up to 992px
+ */
+@media (max-width: 992px) {
+    body {
+        padding-left: 0;       /* Remove side nav space */
+    }
+    
+    /* Side navigation for mobile */
+    .side-nav {
+        transform: translateX(-100%); /* Hide off-screen */
+        width: 280px;          /* Slightly narrower */
+    }
+    
+    /* Show side nav when active */
+    .side-nav.active {
+        transform: translateX(0); /* Slide in */
+    }
+    
+    /* Mobile menu toggle button */
+    .menu-toggle {
+        display: block;        /* Show toggle button */
+        position: fixed;       /* Fixed position */
+        top: 20px;             /* From top */
+        left: 20px;            /* From left */
+        z-index: 1100;         /* Above other content */
+        background: var(--dark-teal); /* Dark teal background */
+        color: white;          /* White icon */
+        border: none;          /* No border */
+        width: 50px;           /* Fixed size */
+        height: 50px;          /* Fixed size */
+        border-radius: 50%;    /* Circular shape */
+        font-size: 1.5rem;     /* Icon size */
+        cursor: pointer;       /* Pointer cursor */
+        box-shadow: var(--shadow-md); /* Medium shadow */
+        transition: all 0.3s ease; /* Smooth transitions */
+    }
+    
+    /* Hover effect for menu toggle */
+    .menu-toggle:hover {
+        transform: scale(1.1); /* Slight scale up */
+    }
+}
+
+/**
+ * Small Screens (Large Phones)
+ * Adjustments for screens up to 768px
+ */
+@media (max-width: 768px) {
+    /* Single column layout for skills */
+    .skills-grid {
+        grid-template-columns: 1fr; /* Single column */
+    }
+    
+    /* Stack buttons vertically */
+    .button-group {
+        flex-direction: column; /* Vertical layout */
+        align-items: center;    /* Center buttons */
+    }
+    
+    /* Full width buttons */
+    .button {
+        width: 100%;           /* Full width */
+        max-width: 300px;      /* But not too wide */
+    }
+
+    /* Smaller social icons */
+    .social-icon {
+        width: 60px;           /* Smaller size */
+        height: 60px;          /* Smaller size */
+    }
+}
+
+/**
+ * Extra Small Screens (Phones)
+ * Adjustments for screens up to 480px
+ */
+@media (max-width: 480px) {
+    /* Reduce section padding */
+    .section-container {
+        padding: var(--space-lg) 0; /* Smaller padding */
+    }
+
+    /* Smaller skill images */
+    .skill-image {
+        width: 60px;           /* Smaller size */
+        height: 60px;          /* Smaller size */
+    }
+    
+    /* Full width tables */
+    table {
+        min-width: 100%;       /* No minimum width */
+    }
+    
+    /* Smaller cell padding */
+    th, td {
+        padding: var(--space-xs); /* Extra small padding */
+    }
+}
+
+
+
+
+
+    </style>
 </head>
 <body>
+
+    
     <!-- Side Navigation Menu -->
     <nav class="side-nav" id="sideNav">
         <div class="profile-section">
